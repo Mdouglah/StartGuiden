@@ -9,41 +9,43 @@
 <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#F2F5F8; --surface:#FFFFFF; --ink:#1C2430; --muted:#566170; --line:#D5DCE4;
-  --accent:#1E5FD0; --accent-ink:#FFFFFF; --ok:#1C7F45; --warn:#B8322A;
-  --plate:#BFDDC6; --plate-dot:#A6CDB0; --chip:#FFFFFF; --chip-line:#C4CDD8; --soft:#E8EEF4;
+  --bg:#EEF6EF; --bg-grad:linear-gradient(135deg,#e8f5e9,#f1f8e9,#e0f2f1); --surface:#FFFFFF; --ink:#1a3a2a; --muted:#4a7c59; --line:#c8e6c9;
+  --accent:#2e7d32; --accent-ink:#FFFFFF; --btn:linear-gradient(135deg,#2e7d32,#1b5e20); --ok:#1C7F45; --warn:#B8322A;
+  --plate:#BFDDC6; --plate-dot:#A6CDB0; --chip:#FFFFFF; --chip-line:#a5d6a7; --soft:#e8f5e9;
+  --serif:Georgia,'Times New Roman',serif;
   box-sizing:border-box;
   padding-top:env(safe-area-inset-top,0px);
   padding-bottom:env(safe-area-inset-bottom,0px);
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
-    --bg:#131920; --surface:#1C232D; --ink:#E7ECF2; --muted:#9BA7B5; --line:#2E3946;
-    --accent:#77A6FF; --accent-ink:#0E1620; --ok:#52C483; --warn:#FF8173;
-    --plate:#1E3426; --plate-dot:#28452F; --chip:#25303C; --chip-line:#3A4757; --soft:#232C37;
+    --bg:#0F1A12; --bg-grad:#0F1A12; --surface:#17251A; --ink:#E3EFE5; --muted:#9DBCA5; --line:#2A3D2E;
+    --accent:#81C784; --accent-ink:#0F1A12; --btn:#81C784; --ok:#66CC8A; --warn:#FF8173;
+    --plate:#1E3426; --plate-dot:#28452F; --chip:#1E2F22; --chip-line:#36513C; --soft:#1E2F22;
   }
 }
 :root[data-theme="dark"]{
-  --bg:#131920; --surface:#1C232D; --ink:#E7ECF2; --muted:#9BA7B5; --line:#2E3946;
-  --accent:#77A6FF; --accent-ink:#0E1620; --ok:#52C483; --warn:#FF8173;
-  --plate:#1E3426; --plate-dot:#28452F; --chip:#25303C; --chip-line:#3A4757; --soft:#232C37;
+  --bg:#0F1A12; --bg-grad:#0F1A12; --surface:#17251A; --ink:#E3EFE5; --muted:#9DBCA5; --line:#2A3D2E;
+  --accent:#81C784; --accent-ink:#0F1A12; --btn:#81C784; --ok:#66CC8A; --warn:#FF8173;
+  --plate:#1E3426; --plate-dot:#28452F; --chip:#1E2F22; --chip-line:#36513C; --soft:#1E2F22;
 }
 *,*::before,*::after{box-sizing:inherit}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:'Lexend',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;font-size:17px;line-height:1.55}
+body{margin:0;background:var(--bg);background-image:var(--bg-grad);background-attachment:fixed;min-height:100vh;color:var(--ink);font-family:'Lexend',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;font-size:17px;line-height:1.55}
 .wrap{max-width:1000px;margin:0 auto;padding:20px 16px 56px}
 button{font:inherit;color:inherit}
 :focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+h1,h2,h3{font-family:var(--serif)}
 h2{margin:0 0 6px;font-size:clamp(24px,4vw,30px);line-height:1.2}
 .lead{margin:0 0 18px;color:var(--muted);max-width:62ch}
 
 .top{display:flex;flex-wrap:wrap;gap:16px;align-items:flex-end;justify-content:space-between;margin-bottom:16px}
 .brand{display:flex;align-items:center;gap:12px;cursor:pointer;background:none;border:0;padding:0;text-align:left}
-.brand h1{margin:0;font-size:clamp(30px,6vw,44px);line-height:1;font-weight:700;letter-spacing:-0.02em}
+.brand h1{margin:0;font-size:clamp(30px,6vw,44px);line-height:1;font-weight:700;color:var(--accent)}
 .brand p{margin:4px 0 0;color:var(--muted);font-size:15px}
 .seg{display:inline-flex;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:4px}
-.seg button{border:0;background:none;padding:9px 18px;border-radius:999px;cursor:pointer;font-weight:500}
-.seg button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.seg button{border:0;background:none;padding:9px 18px;border-radius:999px;cursor:pointer;font-weight:700;font-family:var(--serif)}
+.seg button[aria-pressed="true"]{background:var(--btn);color:var(--accent-ink)}
 .tools{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;margin:0 0 18px;color:var(--muted);font-size:15px}
 .tools label{display:inline-flex;align-items:center;gap:8px;cursor:pointer}
 input[type=checkbox]{width:18px;height:18px;accent-color:var(--accent)}
@@ -64,7 +66,7 @@ input[type=checkbox]{width:18px;height:18px;accent-color:var(--accent)}
 .head .ic{font-size:44px;line-height:1}
 .tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
 .tabs button{border:2px solid var(--line);background:var(--surface);border-radius:12px;padding:10px 16px;cursor:pointer;font-weight:500}
-.tabs button[aria-pressed="true"]{border-color:var(--accent);background:var(--accent);color:var(--accent-ink)}
+.tabs button[aria-pressed="true"]{border-color:var(--accent);background:var(--btn);color:var(--accent-ink)}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px}
 
 /* Cards */
@@ -88,7 +90,7 @@ input[type=checkbox]{width:18px;height:18px;accent-color:var(--accent)}
 .opt.right{border-color:var(--ok);animation:pop .45s ease}
 .opt.wrong{border-color:var(--warn);animation:shake .35s ease}
 .opt .emo{font-size:64px}
-.btn{border:0;background:var(--accent);color:var(--accent-ink);border-radius:999px;padding:10px 18px;cursor:pointer;font-weight:500;display:inline-flex;align-items:center;gap:8px}
+.btn{border:0;background:var(--btn);color:var(--accent-ink);border-radius:999px;padding:10px 18px;cursor:pointer;font-weight:500;display:inline-flex;align-items:center;gap:8px}
 .btn.ghost{background:transparent;color:var(--ink);border:2px solid var(--line)}
 .status{min-height:1.6em;margin-top:14px;font-weight:500}
 .status.ok{color:var(--ok)} .status.no{color:var(--warn)}
@@ -123,7 +125,7 @@ input[type=checkbox]{width:18px;height:18px;accent-color:var(--accent)}
 .grades{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px;align-items:center}
 .grades span{color:var(--muted);font-size:15px;margin-right:4px}
 .grades button{border:2px solid var(--line);background:var(--surface);border-radius:10px;padding:8px 16px;cursor:pointer;font-weight:500}
-.grades button[aria-pressed="true"]{border-color:var(--ink);background:var(--ink);color:var(--bg)}
+.grades button[aria-pressed="true"]{border-color:var(--accent);background:var(--btn);color:var(--accent-ink)}
 .tgrid{display:grid;grid-template-columns:1fr;gap:16px}
 @media (min-width:840px){.tgrid{grid-template-columns:1.4fr 1fr}}
 .col{display:grid;gap:16px;align-content:start}
@@ -153,16 +155,12 @@ ul.plain li{margin-bottom:6px}
 .intro .cols div{background:var(--soft);border-radius:12px;padding:14px;font-size:15px}
 .intro .cols b{display:block;margin-bottom:4px;font-size:16px}
 footer{margin-top:28px;color:var(--muted);font-size:14px}
+#app.teacher{font-family:var(--serif)}
+.theme,.panel,.card,.startbox,.helpbox,.canbox{box-shadow:0 4px 20px rgba(27,94,32,.06)}
 
 /* ================= V2 ================= */
 .quickbar{display:grid;grid-template-columns:1fr;gap:12px;margin:0 0 20px}
 @media(min-width:700px){.quickbar{grid-template-columns:1.15fr 1fr 1fr}}
-.quick{border:1px solid var(--line);background:var(--surface);border-radius:16px;padding:16px;text-align:left;cursor:pointer;min-height:112px;position:relative;overflow:hidden}
-.quick::before{content:"";position:absolute;inset:0 0 auto 0;height:6px;background:var(--qtc,var(--accent))}
-.quick:hover{border-color:var(--qtc,var(--accent))}
-.quick .qicon{font-size:32px;display:block;margin-bottom:6px}
-.quick b{display:block;font-size:18px;margin-bottom:3px}
-.quick span{color:var(--muted);font-size:14px}
 .startbox{background:linear-gradient(135deg,var(--surface),var(--soft));border:1px solid var(--line);border-radius:18px;padding:20px;margin-bottom:18px}
 .startbox h2{margin-bottom:4px}
 .path{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;margin-top:15px}
@@ -175,11 +173,10 @@ footer{margin-top:28px;color:var(--muted);font-size:14px}
 .helpgrid{display:grid;grid-template-columns:1fr;gap:8px}
 @media(min-width:650px){.helpgrid{grid-template-columns:repeat(2,1fr)}}
 .helpitem{display:flex;align-items:center;justify-content:space-between;gap:10px;border:1px solid var(--line);background:var(--bg);border-radius:12px;padding:11px 12px;text-align:left}
-.helpitem .sayphrase{font-weight:500}.helpitem button{flex:0 0 auto;border:0;background:var(--accent);color:var(--accent-ink);border-radius:999px;padding:6px 10px;cursor:pointer}
+.helpitem .sayphrase{font-weight:500}.helpitem button{flex:0 0 auto;border:0;background:var(--btn);color:var(--accent-ink);border-radius:999px;padding:6px 10px;cursor:pointer}
 .sectionlabel{font-size:14px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin:20px 0 8px}
 .canbox{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px;margin-top:16px}
 .canbox h3{margin:0 0 8px}.canlist{display:grid;gap:7px}.canrow{display:flex;align-items:center;gap:9px;color:var(--ink);font-size:15px}.canrow input{width:18px;height:18px}
-.classroom-phrase{border-left:4px solid var(--accent);background:var(--soft);padding:10px 12px;border-radius:8px;margin:7px 0}
 
 @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
 </style>
@@ -188,7 +185,7 @@ footer{margin-top:28px;color:var(--muted);font-size:14px}
 <div class="wrap">
   <header class="top">
     <button class="brand" id="home" aria-label="Till startsidan">
-      <svg width="54" height="44" viewBox="-1 -8 62 47" aria-hidden="true"><rect x="4" y="-6" width="12" height="8" rx="2" fill="#F5C211" stroke="#B38A00" stroke-width="1.5"/><rect x="24" y="-6" width="12" height="8" rx="2" fill="#F5C211" stroke="#B38A00" stroke-width="1.5"/><rect x="44" y="-6" width="12" height="8" rx="2" fill="#F5C211" stroke="#B38A00" stroke-width="1.5"/><rect x="0" y="0" width="60" height="30" rx="3" fill="#F5C211" stroke="#B38A00" stroke-width="1.5"/></svg>
+      <svg width="54" height="44" viewBox="-1 -8 62 47" aria-hidden="true"><rect x="4" y="-6" width="12" height="8" rx="2" fill="#2e7d32" stroke="#1b5e20" stroke-width="1.5"/><rect x="24" y="-6" width="12" height="8" rx="2" fill="#2e7d32" stroke="#1b5e20" stroke-width="1.5"/><rect x="44" y="-6" width="12" height="8" rx="2" fill="#2e7d32" stroke="#1b5e20" stroke-width="1.5"/><rect x="0" y="0" width="60" height="30" rx="3" fill="#2e7d32" stroke="#1b5e20" stroke-width="1.5"/></svg>
       <span><h1>StartGuiden</h1><p>Svenska, skolan och samhället för förberedelseklass</p></span>
     </button>
     <div class="seg" role="group" aria-label="Välj läge">
@@ -222,8 +219,8 @@ const SIZES = {
 const GRADE_NAMES = {'13':'Åk 1–3','46':'Åk 4–6','79':'Åk 7–9'};
 
 const THEMES = [
-{ id:'klassrummet', name:'I klassrummet', icon:'🏫', tc:'#1E5FD0',
-  words:[['en bok','📕','Öppna boken.'],['en penna','✏️','Jag behöver en penna.'],['ett papper','📄','Skriv på papperet.'],['en dator','💻','Ta fram datorn.'],['en uppgift','📝','Jag gör uppgiften.'],['en sida','📄','Öppna sidan fem.'],['en fråga','❓','Jag har en fråga.'],['ett svar','💬','Jag vet svaret.'],['en lärare','🧑‍🏫','Läraren hjälper mig.'],['en kompis','🧑‍🤝‍🧑','Jag arbetar med min kompis.']],
+{ id:'klassrummet', name:'I klassrummet', icon:'🙋', tc:'#1E5FD0',
+  words:[['lyssna','👂','Lyssna på läraren.'],['titta','👀','Titta på tavlan.'],['skriv','✍️','Skriv ditt namn.'],['läs','📖','Läs texten.'],['räck upp handen','🙋','Räck upp handen om du vill säga något.'],['sätt dig','🪑','Sätt dig på din plats.'],['en uppgift','📝','Jag gör uppgiften.'],['en fråga','❓','Jag har en fråga.'],['ett svar','💬','Jag vet svaret.'],['en kompis','🧑‍🤝‍🧑','Jag arbetar med min kompis.']],
   sentences:['Jag förstår inte.','Kan du säga det igen?','Kan du hjälpa mig?','Jag har en fråga.','Är du klar?'],
   plan:{ goal:'Eleverna kan förstå och använda vanliga ord och instruktioner i klassrummet.',
     steps:[['Visa och gör','5 min','Läraren visar: lyssna, titta, öppna, stäng, skriv. Eleverna gör samtidigt.'],['Instruktionslek','10 min','Ge korta instruktioner: "Ta fram pennan", "Öppna boken", "Titta här". Eleverna visar med handling.'],['Fraser','10 min','Öva "Jag förstår inte", "Kan du säga det igen?" och "Kan du hjälpa mig?" med en kompis.'],['Klassrumsbingo','10 min','Eleverna kryssar ord de hör under en kort lektion eller aktivitet.']],
@@ -328,7 +325,6 @@ const CAN_ITEMS = [
   ['fråga','Jag kan ställa en enkel fråga.']
 ];
 
-
 /* ================= HELPERS ================= */
 const $ = id => document.getElementById(id);
 const pick = a => a[Math.floor(Math.random()*a.length)];
@@ -379,6 +375,7 @@ $('home').onclick=()=>go({theme:null});
 function render(){
   $('modeS').setAttribute('aria-pressed', st.mode==='s');
   $('modeT').setAttribute('aria-pressed', st.mode==='t');
+  $('app').className = st.mode==='t' ? 'teacher' : 'student';
   if(st.mode==='s') st.theme ? renderTheme() : renderStudentHome();
   else st.theme ? renderPlan() : renderTeacherHome();
 }
@@ -387,7 +384,6 @@ function themeGrid(meta){
   return `<div class="themes">${THEMES.map(t=>`<button class="theme" style="--tc:${t.tc}" data-t="${t.id}"><span class="ic" aria-hidden="true">${t.icon}</span><span class="nm">${t.name}</span><span class="meta">${meta(t)}</span></button>`).join('')}</div>`;
 }
 function bindGrid(){ document.querySelectorAll('.theme').forEach(b=>b.onclick=()=>go({theme:b.dataset.t, ex:'cards'})); }
-
 
 function helpBox(){
   return `<section class="helpbox" aria-labelledby="helpTitle">
@@ -409,7 +405,7 @@ function bindCan(){
 function startPath(){
   return `<div class="path" aria-label="Börja här">
     <button data-start-theme="hej"><strong>👋 1. Jag och du</strong><small>Hej, namn och känslor</small></button>
-    <button data-start-theme="klassrummet"><strong>🏫 2. Skolan</strong><small>Instruktioner och klassrum</small></button>
+    <button data-start-theme="klassrummet"><strong>🙋 2. I klassrummet</strong><small>Instruktioner och frågor</small></button>
     <button data-start-help="1"><strong>🆘 3. Jag behöver</strong><small>Be om hjälp och förklara</small></button>
     <button data-start-theme="trygg"><strong>🛡️ 4. Jag är trygg</strong><small>Vuxna och rättigheter</small></button>
   </div>`;

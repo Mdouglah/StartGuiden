@@ -153,6 +153,34 @@ ul.plain li{margin-bottom:6px}
 .intro .cols div{background:var(--soft);border-radius:12px;padding:14px;font-size:15px}
 .intro .cols b{display:block;margin-bottom:4px;font-size:16px}
 footer{margin-top:28px;color:var(--muted);font-size:14px}
+
+/* ================= V2 ================= */
+.quickbar{display:grid;grid-template-columns:1fr;gap:12px;margin:0 0 20px}
+@media(min-width:700px){.quickbar{grid-template-columns:1.15fr 1fr 1fr}}
+.quick{border:1px solid var(--line);background:var(--surface);border-radius:16px;padding:16px;text-align:left;cursor:pointer;min-height:112px;position:relative;overflow:hidden}
+.quick::before{content:"";position:absolute;inset:0 0 auto 0;height:6px;background:var(--qtc,var(--accent))}
+.quick:hover{border-color:var(--qtc,var(--accent))}
+.quick .qicon{font-size:32px;display:block;margin-bottom:6px}
+.quick b{display:block;font-size:18px;margin-bottom:3px}
+.quick span{color:var(--muted);font-size:14px}
+.startbox{background:linear-gradient(135deg,var(--surface),var(--soft));border:1px solid var(--line);border-radius:18px;padding:20px;margin-bottom:18px}
+.startbox h2{margin-bottom:4px}
+.path{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;margin-top:15px}
+@media(min-width:650px){.path{grid-template-columns:repeat(4,1fr)}}
+.path button{border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:12px;text-align:left;cursor:pointer}
+.path button:hover{border-color:var(--accent)}
+.path strong{display:block;font-size:15px}.path small{color:var(--muted);font-size:12px}
+.helpbox{border:2px solid var(--accent);background:var(--surface);border-radius:18px;padding:18px;margin-bottom:20px}
+.helpbox h3{margin:0 0 4px;font-size:22px}.helpbox p{margin:0 0 12px;color:var(--muted)}
+.helpgrid{display:grid;grid-template-columns:1fr;gap:8px}
+@media(min-width:650px){.helpgrid{grid-template-columns:repeat(2,1fr)}}
+.helpitem{display:flex;align-items:center;justify-content:space-between;gap:10px;border:1px solid var(--line);background:var(--bg);border-radius:12px;padding:11px 12px;text-align:left}
+.helpitem .sayphrase{font-weight:500}.helpitem button{flex:0 0 auto;border:0;background:var(--accent);color:var(--accent-ink);border-radius:999px;padding:6px 10px;cursor:pointer}
+.sectionlabel{font-size:14px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin:20px 0 8px}
+.canbox{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px;margin-top:16px}
+.canbox h3{margin:0 0 8px}.canlist{display:grid;gap:7px}.canrow{display:flex;align-items:center;gap:9px;color:var(--ink);font-size:15px}.canrow input{width:18px;height:18px}
+.classroom-phrase{border-left:4px solid var(--accent);background:var(--soft);padding:10px 12px;border-radius:8px;margin:7px 0}
+
 @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
@@ -171,7 +199,7 @@ footer{margin-top:28px;color:var(--muted);font-size:14px}
   <div class="tools"><label><input type="checkbox" id="slow" checked> Långsamt tal</label></div>
   <div id="voiceNotice" class="notice" hidden></div>
   <main id="app"></main>
-  <footer>Ljudet använder enhetens inbyggda svenska röst. Elevernas stjärnor sparas bara på den här enheten.</footer>
+  <footer>Ljudet använder enhetens inbyggda svenska röst. Elevernas stjärnor och "Jag kan" sparas bara på den här enheten.</footer>
 </div>
 
 <script>
@@ -194,6 +222,14 @@ const SIZES = {
 const GRADE_NAMES = {'13':'Åk 1–3','46':'Åk 4–6','79':'Åk 7–9'};
 
 const THEMES = [
+{ id:'klassrummet', name:'I klassrummet', icon:'🏫', tc:'#1E5FD0',
+  words:[['en bok','📕','Öppna boken.'],['en penna','✏️','Jag behöver en penna.'],['ett papper','📄','Skriv på papperet.'],['en dator','💻','Ta fram datorn.'],['en uppgift','📝','Jag gör uppgiften.'],['en sida','📄','Öppna sidan fem.'],['en fråga','❓','Jag har en fråga.'],['ett svar','💬','Jag vet svaret.'],['en lärare','🧑‍🏫','Läraren hjälper mig.'],['en kompis','🧑‍🤝‍🧑','Jag arbetar med min kompis.']],
+  sentences:['Jag förstår inte.','Kan du säga det igen?','Kan du hjälpa mig?','Jag har en fråga.','Är du klar?'],
+  plan:{ goal:'Eleverna kan förstå och använda vanliga ord och instruktioner i klassrummet.',
+    steps:[['Visa och gör','5 min','Läraren visar: lyssna, titta, öppna, stäng, skriv. Eleverna gör samtidigt.'],['Instruktionslek','10 min','Ge korta instruktioner: "Ta fram pennan", "Öppna boken", "Titta här". Eleverna visar med handling.'],['Fraser','10 min','Öva "Jag förstår inte", "Kan du säga det igen?" och "Kan du hjälpa mig?" med en kompis.'],['Klassrumsbingo','10 min','Eleverna kryssar ord de hör under en kort lektion eller aktivitet.']],
+    grades:{'13':'Använd en instruktion i taget och mycket bilder. Låt eleven visa med kroppen innan eleven behöver säga något.','46':'Kombinera instruktioner: "Öppna boken och skriv ditt namn." Öva enkla frågor till läraren.','79':'Arbeta med naturligt skolspråk och skillnaden mellan formellt och vardagligt språk. Öva i riktiga klassrumssituationer.'},
+    ideas:['Fotografera vanliga platser och föremål i klassrummet och gör ett eget bildlexikon.','Instruktionsbingo.','En elev ger instruktioner och en annan gör.'],
+    mother:'Låt eleverna jämföra några klassrumsinstruktioner på svenska och modersmålet. Det kan hjälpa dem att förstå skillnaden mellan svensk skolvardag och tidigare skolor.' }},
 { id:'hej', name:'Hej och känslor', icon:'👋', tc:'#F5C211',
   words:[['hej','👋','Hej! Hur mår du?'],['tack','🙏','Tack för hjälpen!'],['ja','✅','Ja, tack.'],['nej','❌','Nej, tack.'],['glad','😀','Jag är glad i dag.'],['ledsen','😢','Hon är ledsen.'],['arg','😠','Han är arg.'],['trött','😴','Jag är trött.'],['rädd','😨','Jag är rädd.'],['sjuk','🤒','Jag är sjuk i dag.'],['hungrig','🍽️','Jag är hungrig.'],['en vän','🧑‍🤝‍🧑','Det här är min vän.']],
   sentences:['Hej, jag heter Ali.','Hur mår du?','Jag är glad i dag.','Tack för hjälpen.','Jag är trött i dag.'],
@@ -271,6 +307,28 @@ THEMES.forEach(t => t.words = t.words.map(a => ({w:a[0], e:a[1], s:a[2], b:a[3]}
 
 const EXS = {cards:'Ordkort', listen:'Lyssna och välj', read:'Läs och välj', sent:'Bygg meningen', lego:'Hitta klossen'};
 
+const HELP_PHRASES = [
+  'Jag förstår inte.',
+  'Kan du säga det igen?',
+  'Kan du prata långsammare?',
+  'Vad betyder det?',
+  'Kan du visa mig?',
+  'Kan du hjälpa mig?',
+  'Jag har en fråga.',
+  'Jag vill prata med läraren.',
+  'Jag vill prata med kuratorn.',
+  'Jag mår inte bra.'
+];
+const CAN_ITEMS = [
+  ['hej','Jag kan hälsa på någon.'],
+  ['namn','Jag kan säga vad jag heter.'],
+  ['hjälp','Jag kan be om hjälp.'],
+  ['förstår','Jag kan säga när jag inte förstår.'],
+  ['klassrum','Jag kan förstå enkla instruktioner.'],
+  ['fråga','Jag kan ställa en enkel fråga.']
+];
+
+
 /* ================= HELPERS ================= */
 const $ = id => document.getElementById(id);
 const pick = a => a[Math.floor(Math.random()*a.length)];
@@ -330,11 +388,51 @@ function themeGrid(meta){
 }
 function bindGrid(){ document.querySelectorAll('.theme').forEach(b=>b.onclick=()=>go({theme:b.dataset.t, ex:'cards'})); }
 
+
+function helpBox(){
+  return `<section class="helpbox" aria-labelledby="helpTitle">
+    <h3 id="helpTitle">🆘 Jag behöver hjälp</h3>
+    <p>Tryck på en fras. Lyssna och träna på att säga den.</p>
+    <div class="helpgrid">${HELP_PHRASES.map(p=>`<div class="helpitem"><span class="sayphrase">${esc(p)}</span><button data-say="${esc(p)}" aria-label="Lyssna: ${esc(p)}">🔊</button></div>`).join('')}</div>
+  </section>`;
+}
+function canBox(){
+  let done={}; try{done=JSON.parse(localStorage.getItem('startguiden-can')||'{}')||{};}catch(e){}
+  return `<section class="canbox"><h3>📈 Jag kan</h3><p class="lead" style="margin-bottom:10px">Markera sådant du kan. Det sparas bara på den här enheten.</p><div class="canlist">${CAN_ITEMS.map(([id,label])=>`<label class="canrow"><input type="checkbox" data-can="${id}" ${done[id]?'checked':''}> ${esc(label)}</label>`).join('')}</div></section>`;
+}
+function bindCan(){
+  document.querySelectorAll('[data-can]').forEach(c=>c.onchange=()=>{
+    let done={}; try{done=JSON.parse(localStorage.getItem('startguiden-can')||'{}')||{};}catch(e){}
+    done[c.dataset.can]=c.checked; try{localStorage.setItem('startguiden-can',JSON.stringify(done));}catch(e){}
+  });
+}
+function startPath(){
+  return `<div class="path" aria-label="Börja här">
+    <button data-start-theme="hej"><strong>👋 1. Jag och du</strong><small>Hej, namn och känslor</small></button>
+    <button data-start-theme="klassrummet"><strong>🏫 2. Skolan</strong><small>Instruktioner och klassrum</small></button>
+    <button data-start-help="1"><strong>🆘 3. Jag behöver</strong><small>Be om hjälp och förklara</small></button>
+    <button data-start-theme="trygg"><strong>🛡️ 4. Jag är trygg</strong><small>Vuxna och rättigheter</small></button>
+  </div>`;
+}
+function bindStart(){
+  document.querySelectorAll('[data-start-theme]').forEach(b=>b.onclick=()=>go({theme:b.dataset.startTheme,ex:'cards'}));
+  document.querySelectorAll('[data-start-help]').forEach(b=>b.onclick=()=>{
+    document.getElementById('helpSection')?.scrollIntoView({behavior:'smooth',block:'start'});
+  });
+}
+
 /* ================= STUDENT ================= */
 function renderStudentHome(){
-  $('app').innerHTML = `<h2>Välj ett tema</h2><p class="lead">Tryck på ett tema. Lyssna, titta och öva.</p>` +
-    themeGrid(t => `${t.words.length} ord${stars[t.id]?` &nbsp;⭐ ${stars[t.id]}`:''}`);
-  bindGrid();
+  $('app').innerHTML = `<section class="startbox">
+      <h2>Börja här</h2>
+      <p class="lead">StartGuiden hjälper dig att förstå, prata och använda svenska i skolan.</p>
+      ${startPath()}
+    </section>
+    <div id="helpSection">${helpBox()}</div>
+    <div class="sectionlabel">Mina teman</div>
+    ${themeGrid(t => `${t.words.length} ord${stars[t.id]?` &nbsp;⭐ ${stars[t.id]}`:''}`)}
+    ${canBox()}`;
+  bindGrid(); bindStart(); bindCan();
 }
 function renderTheme(){
   const t=theme(st.theme);
@@ -342,6 +440,7 @@ function renderTheme(){
   $('app').innerHTML = `<button class="back" id="bk">‹ Alla teman</button>
     <div class="head"><span class="ic" aria-hidden="true">${t.icon}</span><h2 style="margin:0">${t.name}</h2><span style="margin-left:auto;font-weight:700" id="stars">⭐ ${stars[t.id]||0}</span></div>
     <nav class="tabs" role="group" aria-label="Övningar">${exs.map(k=>`<button data-ex="${k}" aria-pressed="${st.ex===k}">${EXS[k]}</button>`).join('')}</nav>
+    ${st.theme!=='trygg'?`<details class="helpbox" style="margin-bottom:16px"><summary style="cursor:pointer;font-weight:700;font-size:18px">🆘 Jag behöver hjälp</summary><div class="helpgrid" style="margin-top:12px">${HELP_PHRASES.slice(0,6).map(p=>`<div class="helpitem"><span class="sayphrase">${esc(p)}</span><button data-say="${esc(p)}" aria-label="Lyssna: ${esc(p)}">🔊</button></div>`).join('')}</div></details>`:''}
     <section class="panel" id="panel"></section>`;
   $('bk').onclick=()=>go({theme:null});
   document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>go({ex:b.dataset.ex}));

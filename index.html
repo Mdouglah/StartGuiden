@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>StartGuiden – svenska för förberedelseklass</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F2F5F8; --surface:#FFFFFF; --ink:#1C2430; --muted:#566170; --line:#D5DCE4;
+  --accent:#1E5FD0; --accent-ink:#FFFFFF; --ok:#1C7F45; --warn:#B8322A;
+  --plate:#BFDDC6; --plate-dot:#A6CDB0; --chip:#FFFFFF; --chip-line:#C4CDD8; --soft:#E8EEF4;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#131920; --surface:#1C232D; --ink:#E7ECF2; --muted:#9BA7B5; --line:#2E3946;
+    --accent:#77A6FF; --accent-ink:#0E1620; --ok:#52C483; --warn:#FF8173;
+    --plate:#1E3426; --plate-dot:#28452F; --chip:#25303C; --chip-line:#3A4757; --soft:#232C37;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#131920; --surface:#1C232D; --ink:#E7ECF2; --muted:#9BA7B5; --line:#2E3946;
+  --accent:#77A6FF; --accent-ink:#0E1620; --ok:#52C483; --warn:#FF8173;
+  --plate:#1E3426; --plate-dot:#28452F; --chip:#25303C; --chip-line:#3A4757; --soft:#232C37;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Lexend',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;font-size:17px;line-height:1.55}
+.wrap{max-width:1000px;margin:0 auto;padding:20px 16px 56px}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+h2{margin:0 0 6px;font-size:clamp(24px,4vw,30px);line-height:1.2}
+.lead{margin:0 0 18px;color:var(--muted);max-width:62ch}
+
+.top{display:flex;flex-wrap:wrap;gap:16px;align-items:flex-end;justify-content:space-between;margin-bottom:16px}
+.brand{display:flex;align-items:center;gap:12px;cursor:pointer;background:none;border:0;padding:0;text-align:left}
+.brand h1{margin:0;font-size:clamp(30px,6vw,44px);line-height:1;font-weight:700;letter-spacing:-0.02em}
+.brand p{margin:4px 0 0;color:var(--muted);font-size:15px}
+.seg{display:inline-flex;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:4px}
+.seg button{border:0;background:none;padding:9px 18px;border-radius:999px;cursor:pointer;font-weight:500}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.tools{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;margin:0 0 18px;color:var(--muted);font-size:15px}
+.tools label{display:inline-flex;align-items:center;gap:8px;cursor:pointer}
+input[type=checkbox]{width:18px;height:18px;accent-color:var(--accent)}
+.notice{background:var(--surface);border:1px solid var(--line);border-left:5px solid #F5C211;border-radius:10px;padding:12px 14px;margin:0 0 18px;font-size:15px}
+
+.back{border:0;background:none;color:var(--accent);font-weight:500;cursor:pointer;padding:6px 0;margin-bottom:8px}
+
+/* Theme grid */
+.themes{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px}
+.theme{display:flex;flex-direction:column;align-items:flex-start;gap:6px;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px 16px 14px;cursor:pointer;position:relative;overflow:hidden;min-height:150px}
+.theme::before{content:"";position:absolute;inset:0 0 auto 0;height:8px;background:var(--tc)}
+.theme:hover{border-color:var(--tc)}
+.theme .ic{font-size:40px;line-height:1;margin-top:6px}
+.theme .nm{font-weight:700;font-size:19px;line-height:1.25}
+.theme .meta{color:var(--muted);font-size:14px;margin-top:auto}
+
+.head{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-bottom:14px}
+.head .ic{font-size:44px;line-height:1}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.tabs button{border:2px solid var(--line);background:var(--surface);border-radius:12px;padding:10px 16px;cursor:pointer;font-weight:500}
+.tabs button[aria-pressed="true"]{border-color:var(--accent);background:var(--accent);color:var(--accent-ink)}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px}
+
+/* Cards */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+.wcard{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:10px;background:var(--soft);border:2px solid transparent;border-radius:14px;padding:18px 8px 12px;cursor:pointer;min-height:150px}
+.wcard:hover{border-color:var(--accent)}
+.wcard.on{border-color:var(--accent);background:var(--surface)}
+.emo{font-size:58px;line-height:1.1}
+.wcard .word{font-weight:700;font-size:20px;text-align:center}
+.wcard .ex{font-size:14px;color:var(--muted);text-align:center;min-height:1.4em}
+.hint{margin-top:14px;color:var(--muted);font-size:15px}
+
+/* Quiz */
+.qtop{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-bottom:16px}
+.say{font-size:clamp(22px,4vw,32px);font-weight:700}
+.prog{margin-left:auto;font-weight:500;color:var(--muted)}
+.opts{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;max-width:560px}
+@media (min-width:640px){.opts{grid-template-columns:repeat(4,1fr);max-width:none}}
+.opt{background:var(--soft);border:3px solid transparent;border-radius:16px;min-height:130px;display:grid;place-items:center;cursor:pointer;padding:10px}
+.opt:hover{border-color:var(--accent)}
+.opt.right{border-color:var(--ok);animation:pop .45s ease}
+.opt.wrong{border-color:var(--warn);animation:shake .35s ease}
+.opt .emo{font-size:64px}
+.btn{border:0;background:var(--accent);color:var(--accent-ink);border-radius:999px;padding:10px 18px;cursor:pointer;font-weight:500;display:inline-flex;align-items:center;gap:8px}
+.btn.ghost{background:transparent;color:var(--ink);border:2px solid var(--line)}
+.status{min-height:1.6em;margin-top:14px;font-weight:500}
+.status.ok{color:var(--ok)} .status.no{color:var(--warn)}
+.done{text-align:center;padding:24px 10px}
+.done .big{font-size:56px;line-height:1}
+.done p{font-size:22px;font-weight:700;margin:10px 0 16px}
+@keyframes pop{0%{transform:scale(1)}40%{transform:scale(1.08)}100%{transform:scale(1)}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-7px)}75%{transform:translateX(7px)}}
+
+/* Sentence */
+.slots{min-height:62px;border:2px dashed var(--chip-line);border-radius:12px;padding:10px;display:flex;flex-wrap:wrap;gap:8px;margin:0 0 12px}
+.slots.ok{border-style:solid;border-color:var(--ok)}
+.pool{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:2px solid var(--chip-line);background:var(--chip);border-radius:10px;padding:8px 14px;font-size:20px;cursor:pointer;font-weight:500}
+.chip:hover{border-color:var(--accent)}
+.row{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px;align-items:center}
+
+/* Lego */
+.plate{background-color:var(--plate);background-image:radial-gradient(circle,var(--plate-dot) 5px,transparent 6px);background-size:26px 26px;background-position:13px 13px;border-radius:14px;padding:26px 14px;min-height:180px;display:flex;flex-wrap:wrap;gap:16px 20px;justify-content:center;align-items:flex-end}
+.brick{background:none;border:0;padding:6px;border-radius:10px;cursor:pointer;line-height:0;transition:transform .12s ease}
+.brick:hover{transform:translateY(-3px)}
+.brick svg,.bk svg{display:block;filter:drop-shadow(0 3px 0 rgba(0,0,0,.18))}
+.brick.right{animation:pop .45s ease}
+.brick.wrong{animation:shake .35s ease}
+.levels{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.levels button{border:2px solid var(--line);background:var(--surface);border-radius:10px;padding:8px 14px;cursor:pointer;text-align:left;line-height:1.3}
+.levels button small{display:block;color:var(--muted);font-size:13px}
+.levels button[aria-pressed="true"]{border-color:var(--accent)}
+.say.hidden{color:transparent;background:repeating-linear-gradient(90deg,var(--line) 0 18px,transparent 18px 26px);border-radius:6px;min-width:220px}
+
+/* Teacher */
+.grades{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px;align-items:center}
+.grades span{color:var(--muted);font-size:15px;margin-right:4px}
+.grades button{border:2px solid var(--line);background:var(--surface);border-radius:10px;padding:8px 16px;cursor:pointer;font-weight:500}
+.grades button[aria-pressed="true"]{border-color:var(--ink);background:var(--ink);color:var(--bg)}
+.tgrid{display:grid;grid-template-columns:1fr;gap:16px}
+@media (min-width:840px){.tgrid{grid-template-columns:1.4fr 1fr}}
+.col{display:grid;gap:16px;align-content:start}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px}
+.card h3{margin:0 0 10px;font-size:19px}
+.card p,.card li{max-width:68ch}
+.card p:last-child{margin-bottom:0}
+.steps{list-style:none;padding:0;margin:0;counter-reset:s}
+.steps li{position:relative;padding:0 0 14px 44px;counter-increment:s}
+.steps li:last-child{padding-bottom:0}
+.steps li::before{content:counter(s);position:absolute;left:0;top:0;width:30px;height:30px;border-radius:8px;background:var(--soft);display:grid;place-items:center;font-weight:700}
+.steps b{display:block}
+.steps .min{color:var(--muted);font-size:14px;font-weight:400}
+.words{display:flex;flex-wrap:wrap;gap:6px}
+.wbtn{border:1px solid var(--line);background:var(--bg);border-radius:8px;padding:5px 10px;cursor:pointer;font-size:15px;text-align:left}
+.wbtn:hover{border-color:var(--accent)}
+.sents{display:grid;gap:6px}
+.focus{border-left:5px solid var(--accent);padding-left:14px}
+.mission{background:var(--plate);border-radius:12px;padding:16px;font-size:19px;font-weight:500;margin-bottom:12px}
+ul.plain{margin:0;padding-left:20px}
+ul.plain li{margin-bottom:6px}
+.gram td{padding:4px 12px 4px 0;vertical-align:top;font-size:15px}
+.tablewrap{overflow-x:auto}
+.intro{margin-bottom:20px}
+.intro .cols{display:grid;gap:12px}
+@media (min-width:720px){.intro .cols{grid-template-columns:repeat(3,1fr)}}
+.intro .cols div{background:var(--soft);border-radius:12px;padding:14px;font-size:15px}
+.intro .cols b{display:block;margin-bottom:4px;font-size:16px}
+footer{margin-top:28px;color:var(--muted);font-size:14px}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <button class="brand" id="home" aria-label="Till startsidan">
+      <svg width="54" height="44" viewBox="-1 -8 62 47" aria-hidden="true"><rect x="4" y="-6" width="12" height="8" rx="2" fill="#F5C211" stroke="#B38A00" stroke-width="1.5"/><rect x="24" y="-6" width="12" height="8" rx="2" fill="#F5C211" stroke="#B38A00" stroke-width="1.5"/><rect x="44" y="-6" width="12" height="8" rx="2" fill="#F5C211" stroke="#B38A00" stroke-width="1.5"/><rect x="0" y="0" width="60" height="30" rx="3" fill="#F5C211" stroke="#B38A00" stroke-width="1.5"/></svg>
+      <span><h1>StartGuiden</h1><p>Svenska, skolan och samhället för förberedelseklass</p></span>
+    </button>
+    <div class="seg" role="group" aria-label="Välj läge">
+      <button id="modeS" aria-pressed="true">För elever</button>
+      <button id="modeT" aria-pressed="false">För lärare</button>
+    </div>
+  </header>
+  <div class="tools"><label><input type="checkbox" id="slow" checked> Långsamt tal</label></div>
+  <div id="voiceNotice" class="notice" hidden></div>
+  <main id="app"></main>
+  <footer>Ljudet använder enhetens inbyggda svenska röst. Elevernas stjärnor sparas bara på den här enheten.</footer>
+</div>
+
+<script>
+/* ================= DATA ================= */
+const COLORS = [
+  {ind:'röd',def:'röda',hex:'#D62839',dark:'#9E1B29'},
+  {ind:'blå',def:'blå',hex:'#1E5FD0',dark:'#123F8F'},
+  {ind:'gul',def:'gula',hex:'#F5C211',dark:'#B38A00'},
+  {ind:'grön',def:'gröna',hex:'#2A9D55',dark:'#1B6B39'},
+  {ind:'orange',def:'orange',hex:'#F07F13',dark:'#B15B08'},
+  {ind:'lila',def:'lila',hex:'#7B4FC9',dark:'#53328F'},
+  {ind:'vit',def:'vita',hex:'#FFFFFF',dark:'#8C96A3'},
+  {ind:'svart',def:'svarta',hex:'#2A2D33',dark:'#000000'}
+];
+const SIZES = {
+  s:{studs:2,f:1.3,ind:'liten',def:'lilla',sup:'minsta'},
+  m:{studs:3,f:1.6,ind:'',def:''},
+  l:{studs:4,f:2.0,ind:'stor',def:'stora',sup:'största'}
+};
+const GRADE_NAMES = {'13':'Åk 1–3','46':'Åk 4–6','79':'Åk 7–9'};
+
+const THEMES = [
+{ id:'hej', name:'Hej och känslor', icon:'👋', tc:'#F5C211',
+  words:[['hej','👋','Hej! Hur mår du?'],['tack','🙏','Tack för hjälpen!'],['ja','✅','Ja, tack.'],['nej','❌','Nej, tack.'],['glad','😀','Jag är glad i dag.'],['ledsen','😢','Hon är ledsen.'],['arg','😠','Han är arg.'],['trött','😴','Jag är trött.'],['rädd','😨','Jag är rädd.'],['sjuk','🤒','Jag är sjuk i dag.'],['hungrig','🍽️','Jag är hungrig.'],['en vän','🧑‍🤝‍🧑','Det här är min vän.']],
+  sentences:['Hej, jag heter Ali.','Hur mår du?','Jag är glad i dag.','Tack för hjälpen.','Jag är trött i dag.'],
+  plan:{ goal:'Eleverna kan hälsa, säga sitt namn, fråga hur någon mår och berätta hur de själva känner sig.',
+    steps:[['Hälsningsring','5 min','Stå i ring. Hälsa på varje elev med namn. Eleven svarar: "Hej, jag heter ...".'],['Ordkort','10 min','Visa känsloorden på storskärm. Eleverna härmar ansiktsuttrycket och säger ordet.'],['Känslocharader','15 min','En elev visar en känsla med ansiktet, de andra gissar: "Du är trött!" Avsluta med Lyssna och välj.'],['Dagens känsla','5 min','Varje elev pekar på en känsla och säger: "I dag är jag ...".']],
+    grades:{'13':'Fokusera på glad, ledsen, arg och trött. En känslotermometer på väggen hjälper eleverna att visa hur de mår utan ord.','46':'Lägg till varför: "Jag är glad för att ...". Låt eleverna fråga varandra hur de mår.','79':'Prata om olika sätt att hälsa: hej, tjena, god morgon. När använder man vad, och med vem?'},
+    ideas:['Känsloskylt på bänken som eleven vänder varje morgon.','Rollspel: en ny elev kommer till klassen och ska hälsas välkommen.','Känslobingo med bilder.'],
+    mother:'Låt eleverna lära klassen hur man säger hej och tack på sina språk. Skriv upp alla på tavlan och använd dem i hälsningsringen.' }},
+{ id:'kroppen', name:'Kroppen', icon:'✋', tc:'#F07F13',
+  words:[['ett öga','👁️','Jag ser med ögonen.'],['ett öra','👂','Jag hör med öronen.'],['en näsa','👃','Jag luktar med näsan.'],['en mun','👄','Jag äter med munnen.'],['en tand','🦷','Jag borstar tänderna.'],['en tunga','👅','Räck ut tungan.'],['en hand','✋','Jag tvättar händerna.'],['en arm','💪','Lyft armen.'],['ett ben','🦵','Jag springer med benen.'],['en fot','🦶','Jag har ont i foten.'],['hår','💇','Hon har långt hår.']],
+  sentences:['Jag har ont i magen.','Jag tvättar mina händer.','Jag ser med ögonen.','Hon har långt hår.','Jag har ont i huvudet.'],
+  plan:{ goal:'Eleverna kan namnge kroppsdelar och berätta var de har ont, till exempel hos skolsköterskan.',
+    steps:[['Huvud, axlar, knä och tå','5 min','Sjung och peka. Sakta först, sedan snabbare.'],['Ordkort','10 min','Gå igenom orden. Eleverna pekar på sin egen kroppsdel när de hör ordet.'],['Läraren säger','15 min','"Peka på näsan! Lyft armen!" Alla är kvar i leken även om de gör fel. Avsluta med Lyssna och välj.'],['Jag har ont i ...','5 min','Öva meningen inför ett besök hos skolsköterskan. Varje elev säger en mening.']],
+    grades:{'13':'Lek mycket. Rita och klipp ut en kropp i par och sätt ord på delarna.','46':'Lägg till plural: en hand, två händer. Öva "Jag har ont i ..." i par.','79':'Koppla till idrott och hälsa. Gör ett rollspel hos skolsköterskan med frågor och svar.'},
+    ideas:['Rita runt en elev på stort papper och sätt ordlappar på kroppsdelarna.','Rollspel hos skolsköterskan.','Följa-John med kroppsord.'],
+    mother:'Eleverna skriver kroppsdelarna på sitt modersmål bredvid de svenska orden på kroppsaffischen.' }},
+{ id:'farger', name:'Färger och storlek', icon:'🧱', tc:'#D62839', lego:true,
+  words:[['röd','🟥','Tomaten är röd.',0],['blå','🟦','Himlen är blå.',1],['gul','🟨','Solen är gul.',2],['grön','🟩','Gräset är grönt.',3],['orange','🟧','Apelsinen är orange.',4],['lila','🟪','Blomman är lila.',5],['vit','⬜','Snön är vit.',6],['svart','⬛','Katten är svart.',7],['brun','🟫','Björnen är brun.'],['liten','🐭','Musen är liten.'],['stor','🐘','Elefanten är stor.']],
+  sentences:['Den lilla klossen är blå.','Jag har tre gula klossar.','Den röda klossen är stor.','Elefanten är stor.','Musen är liten.'],
+  plan:{ goal:'Eleverna kan säga färger och storlek, använda orden i korta meningar och följa en muntlig byggbeskrivning.',
+    steps:[['Ring och kloss','5 min','Visa en kloss och säg "en röd kloss". Alla säger efter i kör. Skicka runt klossen.'],['Ordkort och Hitta klossen','15 min','Visa appen på storskärm. Eleverna turas om att trycka och säger svaret högt.'],['Legouppdrag i par','15 min','Läs upp ett uppdrag. Paren bygger. Gå runt och fråga: "Vilken färg är den här?"'],['Visa och berätta','5 min','Varje elev visar sitt bygge och säger en mening om det.']],
+    grades:{'13':'Låt eleven peka och visa. Börja med fyra färger och liten och stor.','46':'Lägg till jämförelser: större än, mindre än. Gör barriärövning där en elev beskriver och en bygger utan att titta.','79':'Rama in legot som en övning i kommunikation och precision, så känns det inte barnsligt. Eleverna skriver byggbeskrivningar med först, sedan och sist.'},
+    ideas:['Barriärövning med en bok mellan två elever.','Flerspråkig färgvägg.','Färgjakt i klassrummet.'],
+    mother:'Be eleverna säga färgerna på sitt modersmål. Gör en färgvägg med orden på svenska och på elevernas språk.' }},
+{ id:'siffror', name:'Siffror och tid', icon:'🔢', tc:'#1E5FD0',
+  words:[['ett','1️⃣','Jag har ett äpple.'],['två','2️⃣','Jag har två händer.'],['tre','3️⃣','Vi är tre i gruppen.'],['fyra','4️⃣','Bordet har fyra ben.'],['fem','5️⃣','Handen har fem fingrar.'],['sex','6️⃣','Jag vaknar klockan sex.'],['sju','7️⃣','En vecka har sju dagar.'],['åtta','8️⃣','Skolan börjar klockan åtta.'],['nio','9️⃣','Jag är nio år.'],['tio','🔟','Jag har tio fingrar.'],['en klocka','⏰','Vad är klockan?'],['en kalender','📅','I dag är det måndag.']],
+  sentences:['Jag är tio år.','Klockan är åtta.','I dag är det måndag.','En vecka har sju dagar.','Vad är klockan?'],
+  plan:{ goal:'Eleverna kan räkna till tio, säga sin ålder, säga veckodagarna och förstå hela klockslag.',
+    steps:[['Räkna tillsammans','5 min','Räkna till tio i kör med fingrarna. Räkna baklänges också.'],['Ordkort','10 min','Gå igenom siffrorna. Eleverna visar rätt antal fingrar.'],['Sifferbingo','15 min','Eleverna skriver fem siffror. Du säger siffror högt. Fem rätt ger bingo. Avsluta med Lyssna och välj.'],['Klockan och schemat','5 min','Titta på schemat. När börjar skolan? När är det lunch?']],
+    grades:{'13':'Räkna saker i klassrummet: pennor, stolar, fönster. Sjung en veckodagssång.','46':'Lägg till veckodagarna och schemat. Öva "I dag är det ..." och "I morgon är det ...".','79':'Lägg till tal upp till hundra, priser och tider för buss och tåg.'},
+    ideas:['Ett eget schema med bilder för varje dag.','Telefonnummerlek: en säger ett nummer, kompisen skriver.','Räkna steg på skolgården.'],
+    mother:'Räkna till tio på alla språk i klassen. Jämför hur siffrorna skrivs.' }},
+{ id:'skolan', name:'Skolan', icon:'🏫', tc:'#2A9D55',
+  words:[['en penna','✏️','Jag har en penna.'],['en bok','📕','Öppna boken.'],['en sax','✂️','Får jag låna en sax?'],['en linjal','📏','Jag mäter med linjalen.'],['ett papper','📄','Skriv på papperet.'],['en ryggsäck','🎒','Ryggsäcken är tung.'],['en dator','💻','Logga in på datorn.'],['en lärare','🧑‍🏫','Läraren hjälper mig.'],['skolan','🏫','Jag går i skolan.'],['matsalen','🍽️','Vi äter i matsalen.'],['rasten','⚽','Vi spelar fotboll på rasten.'],['toaletten','🚻','Får jag gå på toaletten?']],
+  sentences:['Får jag gå på toa?','Jag behöver hjälp.','Var är matsalen?','Jag har glömt min penna.','Kan du säga det igen?'],
+  plan:{ goal:'Eleverna kan namnge saker och platser i skolan och använda viktiga fraser som "Får jag gå på toa?" och "Jag behöver hjälp".',
+    steps:[['Skolvandring','10 min','Gå runt i skolan. Stanna vid matsalen, toaletten, biblioteket och kuratorns rum. Säg namnet tillsammans.'],['Ordkort','10 min','Gå igenom sakerna i klassrummet. Eleverna håller upp rätt sak när de hör ordet.'],['Fråga om lov','15 min','Öva fraserna i rollspel. Använd Bygg meningen som stöd.'],['Viktigaste frasen','5 min','Varje elev väljer den fras som är viktigast för hen och säger den.']],
+    grades:{'13':'Sätt bildstöd på dörrar och lådor så att eleverna hittar själva.','46':'Öva schemat och ämnenas namn. Vad gör vi på idrotten, i slöjden, på musiken?','79':'Prata om hur svensk skola fungerar: närvaro, mentor, betyg och vem man frågar om vad.'},
+    ideas:['Fotografera platser i skolan och gör ett eget bildlexikon.','Skattjakt med ordlappar på olika platser.','Frasbokmärke med de viktigaste fraserna.'],
+    mother:'Studiehandledaren kan förklara hur svensk skola skiljer sig från skolan i hemlandet. Låt eleverna berätta hur det var där.' }},
+{ id:'hemmet', name:'Hem och familj', icon:'🏠', tc:'#7B4FC9',
+  words:[['mamma','👩','Min mamma heter Amina.'],['pappa','👨','Min pappa lagar mat.'],['en bror','👦','Jag har en bror.'],['en syster','👧','Min syster är sju år.'],['en bebis','👶','Bebisen sover.'],['mormor','👵','Mormor bor i Syrien.'],['ett hus','🏠','Vi bor i ett hus.'],['en lägenhet','🏢','Jag bor i en lägenhet.'],['en säng','🛏️','Jag sover i sängen.'],['en dörr','🚪','Stäng dörren, tack.'],['ett fönster','🪟','Öppna fönstret.'],['ett kök','🍳','Vi äter i köket.']],
+  sentences:['Jag bor i en lägenhet.','Jag har två bröder.','Min mamma heter Amina.','Vi äter middag i köket.','Min syster är sju år.'],
+  plan:{ goal:'Eleverna kan berätta om sin familj och sitt hem med enkla meningar.',
+    steps:[['En familj','5 min','Visa en bild på en familj och berätta. Eleverna lyssnar och pekar.'],['Ordkort','10 min','Gå igenom ord för familjen och hemmet.'],['Rita och berätta','15 min','Eleverna ritar sitt hem eller sin familj och berättar för en kompis.'],['En mening var','5 min','Varje elev säger en mening: "Jag bor i ..." eller "Jag har en ...".']],
+    grades:{'13':'Använd dockor eller figurer. Låt eleverna peka i stället för att säga allt.','46':'Lägg till plural: en bror, två bröder. Öva att fråga om kompisens familj.','79':'Eleverna skriver en kort text om sin familj eller sitt hem.'},
+    ideas:['Familjeträd med bilder.','Ritning av mitt rum med ordlappar.','Gissa rummet: beskriv saker, kompisen gissar.'],
+    mother:'Var lyhörd: familjer ser olika ut, och en del elever har förlorat eller lämnat familjemedlemmar. Låt eleven välja att rita sitt hem eller sitt rum i stället för familjen. Ord som mormor, farmor och morbror finns ofta även på elevernas språk, jämför gärna.' }},
+{ id:'mat', name:'Mat och kläder', icon:'🍎', tc:'#2A9D55',
+  words:[['ett äpple','🍎','Jag äter ett äpple.'],['en banan','🍌','Bananen är gul.'],['bröd','🍞','Jag vill ha bröd.'],['mjölk','🥛','Jag dricker mjölk.'],['vatten','💧','Jag vill ha vatten, tack.'],['fisk','🐟','I dag äter vi fisk.'],['en jacka','🧥','Ta på dig jackan.'],['en tröja','👕','Tröjan är blå.'],['byxor','👖','Jag har nya byxor.'],['skor','👟','Ta av dig skorna.'],['vantar','🧤','Det är kallt, ta vantar.'],['en halsduk','🧣','Jag har en halsduk.']],
+  sentences:['Jag vill ha vatten, tack.','Jag äter inte fläsk.','Det är kallt ute.','Ta på dig jackan.','Jag tycker om fisk.'],
+  plan:{ goal:'Eleverna kan namnge vanlig mat och kläder, be om något artigt och klä sig efter vädret.',
+    steps:[['Dagens lunch','5 min','Titta på dagens lunchmeny tillsammans. Vad finns? Vad tycker du om?'],['Ordkort','10 min','Gå igenom mat och kläder.'],['Affären','15 min','Rollspel: en elev säljer, en köper. "Jag vill ha ett äpple, tack."'],['Väder och kläder','5 min','Titta ut genom fönstret. Vad behöver vi ha på oss i dag?']],
+    grades:{'13':'Använd riktiga kläder från kapprummet och låt eleverna klä på sig i rätt ordning.','46':'Öva årstiderna och vilka kläder som passar till dem.','79':'Läs en matsedel och en innehållsförteckning. Öva att fråga om maten innehåller fläsk, nötter eller mjölk.'},
+    ideas:['Låtsasaffär med prislappar.','Väderdocka som kläs varje morgon.','Klassens favoritmat i ett diagram.'],
+    mother:'Låt eleverna berätta om en favoriträtt hemifrån och vad ingredienserna heter på båda språken.' }},
+{ id:'samhallet', name:'Samhället', icon:'🚌', tc:'#1E5FD0',
+  words:[['en affär','🛒','Vi handlar i affären.'],['en buss','🚌','Bussen kommer nu.'],['ett tåg','🚆','Tåget går till Stockholm.'],['en cykel','🚲','Jag cyklar till skolan.'],['ett sjukhus','🏥','Hon är på sjukhuset.'],['en läkare','🩺','Läkaren hjälper mig.'],['polisen','👮','Polisen hjälper till.'],['brandkåren','🚒','Brandkåren släcker elden.'],['biblioteket','📚','Jag lånar en bok på biblioteket.'],['en park','🌳','Vi leker i parken.'],['pengar','💵','Jag betalar med pengar.']],
+  sentences:['Vi handlar mat i affären.','Bussen går klockan åtta.','Jag lånar en bok på biblioteket.','Ring 112 vid fara.','Jag cyklar till skolan.'],
+  plan:{ goal:'Eleverna känner till viktiga platser och yrken i samhället och vet när och hur man ringer 112.',
+    steps:[['Var bor vi?','5 min','Visa en karta över orten. Var ligger skolan? Var bor eleverna ungefär?'],['Ordkort','10 min','Gå igenom platser och yrken.'],['Vart går du om ...?','15 min','Säg en situation: "Du vill låna en bok." Eleverna svarar med platsen.'],['112','5 min','Öva när man ringer 112 och vad man säger: vad har hänt och var.']],
+    grades:{'13':'Bygg en liten stad med lego eller kartong och lek i den.','46':'Öva att åka buss: tidtabell, biljett och hållplats.','79':'Prata om biblioteket, vårdcentralen, allemansrätten och hur man bokar en tid.'},
+    ideas:['Studiebesök på biblioteket med eget lånekort.','Bjud in en polis eller brandman.','Fotopromenad i närområdet.'],
+    mother:'Jämför samhället här och i hemlandet. Vad är likt och vad är olika? Var lyhörd för att polis och myndigheter kan väcka olika känslor.' }},
+{ id:'trygg', name:'Trygg i skolan', icon:'🤝', tc:'#F5C211',
+  words:[['en vuxen','🧑','Fråga en vuxen.'],['kuratorn','💬','Jag vill prata med kuratorn.'],['skolsköterskan','🩹','Skolsköterskan hjälper mig.'],['rektorn','🏫','Rektorn bestämmer i skolan.'],['hjälp','🆘','Jag behöver hjälp.'],['stopp','🛑','Säg stopp!'],['trygg','🛡️','Jag känner mig trygg.'],['en regel','📋','Vi följer reglerna.'],['snäll','🤝','Var snäll mot alla.'],['rättigheter','⚖️','Alla barn har rättigheter.']],
+  sentences:['Jag vill prata med kuratorn.','Alla barn har rätt att gå i skolan.','Säg stopp om någon gör dig illa.','Du kan alltid fråga en vuxen.','Jag behöver hjälp.'],
+  plan:{ goal:'Eleverna vet vilka vuxna de kan vända sig till, känner till några grundläggande rättigheter och kan säga stopp.',
+    steps:[['Vilka vuxna finns här?','10 min','Visa bilder på lärare, kurator, skolsköterska och rektor. Gör gärna ett besök hos kuratorn.'],['Ordkort','10 min','Gå igenom orden och fraserna.'],['Säg stopp','10 min','Öva att säga stopp tydligt med röst och hand. Prata om vad man gör sedan: man berättar för en vuxen.'],['Barnkonventionen','10 min','Alla barn har rättigheter. Välj två att prata om, till exempel rätten till skola och rätten att vara trygg.']],
+    grades:{'13':'Använd bilder och enkla ord. Fokusera på frasen "Jag vill prata med en vuxen".','46':'Prata om vänskap, regler och vad kränkningar och mobbning är.','79':'Prata om likabehandling, barnkonventionen och vart man vänder sig om något händer i skolan eller hemma.'},
+    ideas:['Foton på skolans vuxna med namn på väggen.','Klassens regler med bilder.','Kuratorn besöker klassen och presenterar sig.'],
+    mother:'Barnkonventionen finns översatt till många språk. Låt eleverna läsa någon artikel på sitt modersmål. Var uppmärksam på elever som reagerar starkt och ta kontakt med elevhälsan.' }}
+];
+THEMES.forEach(t => t.words = t.words.map(a => ({w:a[0], e:a[1], s:a[2], b:a[3]})));
+
+const EXS = {cards:'Ordkort', listen:'Lyssna och välj', read:'Läs och välj', sent:'Bygg meningen', lego:'Hitta klossen'};
+
+/* ================= HELPERS ================= */
+const $ = id => document.getElementById(id);
+const pick = a => a[Math.floor(Math.random()*a.length)];
+const shuffle = a => { a=a.slice(); for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];} return a; };
+const sample = (a,n) => shuffle(a).slice(0,n);
+const esc = s => String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');
+const theme = id => THEMES.find(t => t.id===id);
+
+function brickSVG(c, size){
+  const s=SIZES[size], W=s.studs*20, H=30; let studs='';
+  for(let i=0;i<s.studs;i++) studs+=`<rect x="${i*20+4}" y="-6" width="12" height="8" rx="2" fill="${c.hex}" stroke="${c.dark}" stroke-width="1.5"/>`;
+  return `<svg viewBox="-1 -8 ${W+2} ${H+9}" width="${Math.round((W+2)*s.f)}" height="${Math.round((H+9)*s.f)}" aria-hidden="true">${studs}<rect x="0" y="0" width="${W}" height="${H}" rx="3" fill="${c.hex}" stroke="${c.dark}" stroke-width="1.5"/><rect x="3" y="3" width="${W-6}" height="3" rx="1.5" fill="#fff" opacity=".3"/></svg>`;
+}
+const pic = w => w.b!=null ? `<span class="bk">${brickSVG(COLORS[w.b],'m')}</span>` : `<span class="emo" aria-hidden="true">${w.e}</span>`;
+
+/* progress */
+let stars = {};
+try { stars = JSON.parse(localStorage.getItem('startguiden-stars')||'{}') || {}; } catch(e){ stars = {}; }
+function addStar(id){ stars[id]=(stars[id]||0)+1; try{ localStorage.setItem('startguiden-stars', JSON.stringify(stars)); }catch(e){} }
+
+/* speech */
+let svVoice=null;
+function loadVoices(){
+  if(!('speechSynthesis' in window)) return;
+  const vs=speechSynthesis.getVoices(); if(!vs.length) return;
+  svVoice = vs.find(v=>/^sv/i.test(v.lang))||null;
+  const n=$('voiceNotice');
+  if(!svVoice){ n.hidden=false; n.textContent='Den här enheten har ingen svensk röst installerad, så uttalet kan bli fel. Lägg till svenska under enhetens inställningar för text till tal.'; } else n.hidden=true;
+}
+if('speechSynthesis' in window){ loadVoices(); speechSynthesis.onvoiceschanged=loadVoices; }
+else { const n=$('voiceNotice'); n.hidden=false; n.textContent='Webbläsaren kan inte läsa upp text. Prova Chrome, Edge eller Safari.'; }
+function speak(text){
+  if(!('speechSynthesis' in window)) return;
+  speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(text); u.lang='sv-SE'; if(svVoice) u.voice=svVoice;
+  u.rate=$('slow').checked?0.72:0.95; speechSynthesis.speak(u);
+}
+document.addEventListener('click', e => { const b=e.target.closest('[data-say]'); if(b) speak(b.dataset.say); });
+
+/* ================= STATE / ROUTING ================= */
+const st = {mode:'s', theme:null, ex:'cards', grade:'13'};
+let timer=null;
+function go(patch){ Object.assign(st,patch); clearTimeout(timer); render(); window.scrollTo({top:0}); }
+$('modeS').onclick=()=>go({mode:'s'});
+$('modeT').onclick=()=>go({mode:'t'});
+$('home').onclick=()=>go({theme:null});
+
+function render(){
+  $('modeS').setAttribute('aria-pressed', st.mode==='s');
+  $('modeT').setAttribute('aria-pressed', st.mode==='t');
+  if(st.mode==='s') st.theme ? renderTheme() : renderStudentHome();
+  else st.theme ? renderPlan() : renderTeacherHome();
+}
+
+function themeGrid(meta){
+  return `<div class="themes">${THEMES.map(t=>`<button class="theme" style="--tc:${t.tc}" data-t="${t.id}"><span class="ic" aria-hidden="true">${t.icon}</span><span class="nm">${t.name}</span><span class="meta">${meta(t)}</span></button>`).join('')}</div>`;
+}
+function bindGrid(){ document.querySelectorAll('.theme').forEach(b=>b.onclick=()=>go({theme:b.dataset.t, ex:'cards'})); }
+
+/* ================= STUDENT ================= */
+function renderStudentHome(){
+  $('app').innerHTML = `<h2>Välj ett tema</h2><p class="lead">Tryck på ett tema. Lyssna, titta och öva.</p>` +
+    themeGrid(t => `${t.words.length} ord${stars[t.id]?` &nbsp;⭐ ${stars[t.id]}`:''}`);
+  bindGrid();
+}
+function renderTheme(){
+  const t=theme(st.theme);
+  const exs=['cards','listen','read','sent'].concat(t.lego?['lego']:[]);
+  $('app').innerHTML = `<button class="back" id="bk">‹ Alla teman</button>
+    <div class="head"><span class="ic" aria-hidden="true">${t.icon}</span><h2 style="margin:0">${t.name}</h2><span style="margin-left:auto;font-weight:700" id="stars">⭐ ${stars[t.id]||0}</span></div>
+    <nav class="tabs" role="group" aria-label="Övningar">${exs.map(k=>`<button data-ex="${k}" aria-pressed="${st.ex===k}">${EXS[k]}</button>`).join('')}</nav>
+    <section class="panel" id="panel"></section>`;
+  $('bk').onclick=()=>go({theme:null});
+  document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>go({ex:b.dataset.ex}));
+  ({cards:exCards, listen:()=>exQuiz('listen'), read:()=>exQuiz('read'), sent:exSentence, lego:exLego})[st.ex](t);
+}
+function star(t){ addStar(t.id); const s=$('stars'); if(s) s.textContent='⭐ '+stars[t.id]; }
+
+/* Ordkort */
+function exCards(t){
+  $('panel').innerHTML = `<div class="cards">${t.words.map((w,i)=>`<button class="wcard" data-i="${i}">${pic(w)}<span class="word">${esc(w.w)}</span><span class="ex"></span></button>`).join('')}</div>
+    <p class="hint">Tryck på ett kort. Lyssna. Säg ordet och meningen själv.</p>`;
+  $('panel').querySelectorAll('.wcard').forEach(b=>b.onclick=()=>{
+    const w=t.words[+b.dataset.i];
+    $('panel').querySelectorAll('.wcard').forEach(x=>{x.classList.remove('on'); x.querySelector('.ex').textContent='';});
+    b.classList.add('on'); b.querySelector('.ex').textContent=w.s;
+    speak(`${w.w}. ${w.s}`);
+  });
+}
+
+/* Lyssna och välj / Läs och välj */
+function exQuiz(kind){
+  const t=theme(st.theme), total=8;
+  const q={round:0, score:0, order:shuffle(t.words).concat(shuffle(t.words)).slice(0,total)};
+  function next(){
+    if(q.round>=total) return finish();
+    q.target=q.order[q.round]; q.firstTry=true; q.locked=false;
+    q.opts=shuffle([q.target].concat(sample(t.words.filter(w=>w!==q.target),3)));
+    const top = kind==='listen'
+      ? `<button class="btn" id="qh">🔊 Lyssna</button><span class="say" style="font-size:18px;font-weight:500;color:var(--muted)">Vilken bild är det?</span>`
+      : `<button class="btn ghost" data-say="${esc(q.target.w)}" aria-label="Lyssna på ordet">🔊</button><span class="say">${esc(q.target.w)}</span>`;
+    $('panel').innerHTML = `<div class="qtop">${top}<span class="prog">${q.round+1} av ${total}</span></div>
+      <div class="opts">${q.opts.map((w,i)=>`<button class="opt" data-i="${i}" aria-label="${esc(w.w)}">${pic(w)}</button>`).join('')}</div>
+      <div class="status" id="qs" aria-live="polite"></div>`;
+    if(kind==='listen'){ $('qh').onclick=()=>speak(q.target.w); speak(q.target.w); }
+    $('panel').querySelectorAll('.opt').forEach(b=>b.onclick=()=>choose(b));
+  }
+  function choose(b){
+    if(q.locked) return;
+    const w=q.opts[+b.dataset.i], s=$('qs');
+    if(w===q.target){
+      q.locked=true; if(q.firstTry){ q.score++; star(theme(st.theme)); }
+      b.classList.add('right'); s.className='status ok'; s.textContent=`Rätt! ${q.target.w}.`;
+      speak(`Rätt! ${q.target.w}.`); q.round++; timer=setTimeout(next,1700);
+    } else {
+      q.firstTry=false; b.classList.remove('wrong'); void b.offsetWidth; b.classList.add('wrong');
+      s.className='status no'; s.textContent=`Det där är ${w.w}. Försök igen.`;
+      speak(`Det där är ${w.w}. Försök igen.`);
+    }
+  }
+  function finish(){
+    const msg = q.score>=7?'Superbra!':q.score>=5?'Bra jobbat!':'Bra kämpat! Öva lite till.';
+    $('panel').innerHTML=`<div class="done"><div class="big">${q.score>=7?'🏆':q.score>=5?'🌟':'💪'}</div><p>${q.score} av ${total} rätt på första försöket. ${msg}</p><button class="btn" id="again">Spela igen</button></div>`;
+    speak(`${q.score} av ${total} rätt. ${msg}`);
+    $('again').onclick=()=>exQuiz(kind);
+  }
+  next();
+}
+
+/* Bygg meningen */
+function exSentence(t){
+  let list=shuffle(t.sentences), k=0, text, tokens, pool, ans;
+  function load(){
+    text=list[k%list.length]; tokens=text.split(' '); ans=[];
+    const idx=tokens.map((_,i)=>i); do{pool=shuffle(idx);}while(tokens.length>1 && pool.join()===idx.join());
+    draw();
+  }
+  function draw(){
+    const chip=i=>`<button class="chip" data-i="${i}">${esc(tokens[i])}</button>`;
+    $('panel').innerHTML=`<p class="lead" style="margin-bottom:12px">Lyssna. Tryck på orden i rätt ordning.</p>
+      <div class="slots" id="slots" aria-label="Din mening">${ans.map(chip).join('')}</div>
+      <div class="pool" id="pool">${pool.filter(i=>!ans.includes(i)).map(chip).join('')}</div>
+      <div class="row"><button class="btn" id="sh">🔊 Lyssna</button><button class="btn ghost" id="sc">Börja om</button><button class="btn ghost" id="sn">Nästa mening</button></div>
+      <div class="status" id="ss" aria-live="polite"></div>`;
+    $('sh').onclick=()=>speak(text);
+    $('sc').onclick=()=>{ans=[];draw();};
+    $('sn').onclick=()=>{k++;load();speak(text);};
+    $('pool').querySelectorAll('.chip').forEach(b=>b.onclick=()=>{const i=+b.dataset.i; ans.push(i); speak(tokens[i].replace(/[.,?!]/g,'')); draw();});
+    $('slots').querySelectorAll('.chip').forEach(b=>b.onclick=()=>{const i=+b.dataset.i; ans=ans.filter(x=>x!==i); draw();});
+    if(ans.length===tokens.length){
+      const s=$('ss');
+      if(ans.map(i=>tokens[i]).join(' ')===text){
+        $('slots').classList.add('ok'); s.className='status ok'; s.textContent='Rätt! Läs meningen högt.'; speak(text); star(t);
+      } else { s.className='status no'; s.textContent='Inte riktigt. Tryck på ett ord för att flytta tillbaka det.'; }
+    }
+  }
+  load();
+}
+
+/* Hitta klossen */
+function descInd(c,size,med){ const w=size==='m'?(med?'mellanstor':''):SIZES[size].ind; return 'en '+(w?w+' ':'')+c.ind+' kloss'; }
+function descDef(c,size){ const w=SIZES[size].def; return 'den '+(w?w+' ':'')+c.def+' klossen'; }
+const lego={level:1};
+function exLego(t){
+  $('panel').innerHTML=`<p class="lead" style="margin-bottom:12px">Lyssna. Tryck på rätt kloss.</p>
+    <div class="levels" role="group" aria-label="Nivå">
+      <button data-l="1" aria-pressed="${lego.level===1}">Nivå 1<small>Färg</small></button>
+      <button data-l="2" aria-pressed="${lego.level===2}">Nivå 2<small>Färg och storlek</small></button>
+      <button data-l="3" aria-pressed="${lego.level===3}">Nivå 3<small>Minsta och största</small></button>
+    </div>
+    <div class="qtop"><button class="btn" id="lh">🔊 Lyssna</button><span class="say" id="lsay"></span></div>
+    <div class="plate" id="lp"></div>
+    <div class="row"><label class="tools" style="margin:0"><input type="checkbox" id="lt" ${lego.hide?'':'checked'}> Visa texten</label><button class="btn ghost" id="ln">Ny uppgift</button></div>
+    <div class="status" id="ls" aria-live="polite"></div>`;
+  document.querySelectorAll('.levels button').forEach(b=>b.onclick=()=>{lego.level=+b.dataset.l; document.querySelectorAll('.levels button').forEach(x=>x.setAttribute('aria-pressed',x===b)); round(true);});
+  $('lh').onclick=()=>speak(lego.prompt);
+  $('ln').onclick=()=>round(true);
+  $('lt').onchange=()=>{lego.hide=!$('lt').checked; showPrompt();};
+  function showPrompt(){ const s=$('lsay'); s.textContent=lego.prompt; s.classList.toggle('hidden',!!lego.hide); }
+  function round(talk){
+    lego.locked=false; $('ls').textContent=''; $('ls').className='status';
+    const L=lego.level;
+    if(L===1){ lego.items=sample(COLORS,4).map(c=>({c,size:'m'})); lego.target=pick(lego.items); lego.prompt=`Tryck på ${descDef(lego.target.c,'m')}.`; }
+    else if(L===2){
+      const tc=pick(COLORS), ts=pick(['s','l']), other=ts==='s'?'l':'s';
+      const items=[{c:tc,size:ts},{c:tc,size:other}], key=o=>o.c.ind+o.size, used=new Set(items.map(key));
+      sample(COLORS.filter(c=>c!==tc),2).forEach(c=>{const o={c,size:ts}; items.push(o); used.add(key(o));});
+      while(items.length<6){ const o={c:pick(COLORS),size:pick(['s','l'])}; if(!used.has(key(o))){items.push(o);used.add(key(o));} }
+      lego.target=items[0]; lego.items=shuffle(items); lego.prompt=`Tryck på ${descDef(tc,ts)}.`;
+    } else {
+      const tc=pick(COLORS), sup=pick(['s','l']), items=['s','m','l'].map(size=>({c:tc,size}));
+      lego.target=items.find(o=>o.size===sup);
+      sample(COLORS.filter(c=>c!==tc),3).forEach(c=>items.push({c,size:pick(['s','m','l'])}));
+      lego.items=shuffle(items); lego.prompt=`Tryck på den ${SIZES[sup].sup} ${tc.def} klossen.`;
+    }
+    $('lp').innerHTML=lego.items.map((o,i)=>`<button class="brick" data-i="${i}" aria-label="${descInd(o.c,o.size,L===3)}">${brickSVG(o.c,o.size)}</button>`).join('');
+    $('lp').querySelectorAll('.brick').forEach(b=>b.onclick=()=>{
+      if(lego.locked) return;
+      const o=lego.items[+b.dataset.i], s=$('ls');
+      if(o===lego.target){
+        lego.locked=true; b.classList.add('right'); s.className='status ok'; s.textContent='Rätt! Bra jobbat!';
+        speak('Rätt! Bra jobbat!'); star(t); timer=setTimeout(()=>round(true),2300);
+      } else {
+        b.classList.remove('wrong'); void b.offsetWidth; b.classList.add('wrong');
+        const d=descInd(o.c,o.size,L===3); s.className='status no'; s.textContent=`Det är ${d}. Försök igen.`; speak(`Det är ${d}. Försök igen.`);
+      }
+    });
+    showPrompt(); if(talk) speak(lego.prompt);
+  }
+  round(false);
+}
+
+/* ================= TEACHER ================= */
+function gradeBar(){
+  return `<div class="grades" role="group" aria-label="Årskurs"><span>Årskurs:</span>${Object.keys(GRADE_NAMES).map(g=>`<button data-g="${g}" aria-pressed="${st.grade===g}">${GRADE_NAMES[g]}</button>`).join('')}</div>`;
+}
+function bindGrades(){ document.querySelectorAll('.grades button').forEach(b=>b.onclick=()=>go({grade:b.dataset.g})); }
+
+function renderTeacherHome(){
+  $('app').innerHTML=`<div class="card intro">
+      <h2>Så använder du StartGuiden</h2>
+      <p class="lead">StartGuiden ger dig färdiga lektioner och övningar för nyanlända elever i åk 1–9. Varje tema innehåller ord med ljud, övningar för eleverna och ett lektionsupplägg anpassat efter årskurs.</p>
+      <div class="cols">
+        <div><b>Planera</b>Välj årskurs och tema nedan. Du får mål, lektionssteg, anpassningar och modersmålsstöd.</div>
+        <div><b>Visa</b>Byt till För elever och visa övningarna på storskärm. Eleverna turas om att trycka och säga svaren högt.</div>
+        <div><b>Öva</b>Eleverna övar själva eller i par på läsplatta. Långsamt tal är påslaget från början.</div>
+      </div>
+    </div>
+    ${gradeBar()}
+    <h2>Teman</h2><p class="lead">Ordningen följer vad en nyanländ elev behöver först, men du kan välja fritt.</p>
+    ${themeGrid(t=>`${t.words.length} ord, ${t.sentences.length} fraser`)}`;
+  bindGrades(); bindGrid();
+}
+
+const MISSIONS = {
+  '13':[()=>{const[a,b]=sample(COLORS,2);return `Bygg ett torn med ${pick(['två','tre'])} ${a.def} och ${pick(['två','tre'])} ${b.def} klossar.`;},()=>{const[a,b]=sample(COLORS,2);return `Ta en liten ${a.ind} kloss och en stor ${b.ind} kloss.`;},()=>`Hitta alla ${pick(COLORS).def} klossar. Hur många har du?`],
+  '46':[()=>{const[a,b]=sample(COLORS,2);return `Lägg en stor ${a.ind} kloss. Ställ en liten ${b.ind} kloss ovanpå.`;},()=>{const[a,b,c]=sample(COLORS,3);return `Lägg tre klossar bredvid varandra: en ${a.ind}, en ${b.ind} och en ${c.ind}.`;},()=>{const[a,b]=sample(COLORS,2);return `Bygg ett torn som är högre än din hand. Använd bara ${a.def} och ${b.def} klossar.`;}],
+  '79':[()=>`Bygg en figur där den största klossen ligger längst ner och den minsta längst upp. Använd högst tre färger.`,()=>`Bygg något i hemlighet med fem klossar. Beskriv det sedan så att din partner kan bygga en likadan.`,()=>{const[a,b,c]=sample(COLORS,3);return `Bygg ett torn med ${a.def}, ${b.def} och ${c.def} klossar. Skriv en instruktion med först, sedan och sist.`;}]
+};
+
+function renderPlan(){
+  const t=theme(st.theme), p=t.plan;
+  const mission = t.lego ? `<div class="card"><h3>Legouppdrag</h3><div class="mission" id="mi"></div><div class="row" style="margin-top:0"><button class="btn" id="mh">🔊 Läs upp</button><button class="btn ghost" id="mn">Nytt uppdrag</button></div></div>
+    <div class="card"><h3>Bra att veta om grammatiken</h3><div class="tablewrap"><table class="gram">
+      <tr><td><b>röd</b></td><td>den röda klossen, röda klossar</td></tr>
+      <tr><td><b>blå</b></td><td>den blå klossen (ändras inte)</td></tr>
+      <tr><td><b>liten</b></td><td>den lilla klossen, små klossar</td></tr>
+      <tr><td><b>stor</b></td><td>den stora klossen, stora klossar</td></tr></table></div>
+      <p style="font-size:15px">Liten är oregelbunden och brukar behöva extra övning. Blå, orange och lila böjs inte.</p></div>` : '';
+  $('app').innerHTML=`<button class="back" id="bk">‹ Alla teman</button>
+    <div class="head"><span class="ic" aria-hidden="true">${t.icon}</span><h2 style="margin:0">${t.name}</h2>
+      <button class="btn ghost" style="margin-left:auto" id="toS">Öppna elevövningarna</button></div>
+    ${gradeBar()}
+    <div class="tgrid">
+      <div class="col">
+        <div class="card"><h3>Lektionens mål</h3><p>${p.goal}</p>
+          <p style="color:var(--muted);font-size:15px">Kopplar till kursplanen i svenska som andraspråk (Lgr22): muntlig kommunikation, ordförråd och att lyssna och förstå i vardagliga situationer.</p></div>
+        <div class="card"><h3>Lektionsupplägg, cirka 40 minuter</h3><ol class="steps">${p.steps.map(s=>`<li><b>${s[0]} <span class="min">${s[1]}</span></b>${s[2]}</li>`).join('')}</ol></div>
+        <div class="card"><h3>Anpassa för ${GRADE_NAMES[st.grade].toLowerCase()}</h3><p class="focus">${p.grades[st.grade]}</p></div>
+        <div class="card"><h3>Fler aktiviteter</h3><ul class="plain">${p.ideas.map(i=>`<li>${i}</li>`).join('')}</ul></div>
+        <div class="card"><h3>Modersmålsstöd och hänsyn</h3><p>${p.mother}</p></div>
+      </div>
+      <div class="col">
+        ${mission}
+        <div class="card"><h3>Ordlista</h3><p style="margin-top:0;font-size:15px;color:var(--muted)">Tryck för att höra ordet.</p>
+          <div class="words">${t.words.map(w=>`<button class="wbtn" data-say="${esc(w.w)}">${w.e} ${esc(w.w)}</button>`).join('')}</div></div>
+        <div class="card"><h3>Fraser att öva</h3><div class="sents">${t.sentences.map(s=>`<button class="wbtn" data-say="${esc(s)}">🔊 ${esc(s)}</button>`).join('')}</div></div>
+      </div>
+    </div>`;
+  $('bk').onclick=()=>go({theme:null});
+  $('toS').onclick=()=>go({mode:'s', ex:'cards'});
+  bindGrades();
+  if(t.lego){
+    let txt=''; const nm=()=>{txt=pick(MISSIONS[st.grade])(); $('mi').textContent=txt;};
+    $('mh').onclick=()=>speak(txt); $('mn').onclick=nm; nm();
+  }
+}
+
+render();
+</script>
+</body>
+</html>

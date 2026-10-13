@@ -15,11 +15,13 @@
 @font-face{font-family:'Newsreader';font-style:normal;font-weight:400;font-display:swap;src:url('/fonts/newsreader-latin-400-normal.woff2') format('woff2')}
 @font-face{font-family:'Newsreader';font-style:italic;font-weight:400;font-display:swap;src:url('/fonts/newsreader-latin-400-italic.woff2') format('woff2')}
 :root{
-  --bg:#EEF6EF; --bg-grad:linear-gradient(135deg,#e8f5e9,#f1f8e9,#e0f2f1); --surface:#FFFFFF; --ink:#1a3a2a; --muted:#4a7c59; --line:#c8e6c9;
-  --accent:#2e7d32; --accent-ink:#FFFFFF; --btn:linear-gradient(135deg,#2e7d32,#1b5e20); --ok:#1C7F45; --warn:#B8322A;
-  --plate:#BFDDC6; --plate-dot:#A6CDB0; --chip:#FFFFFF; --chip-line:#a5d6a7; --soft:#e8f5e9;
-  --logo:#2e7d32; --logo-kant:#1b5e20; --notis-kant:#F5C211; --kort-skugga:0 4px 20px rgba(27,94,32,.06); /* appens egna färger */
-  --serif:Georgia,'Times New Roman',serif;
+  /* Ljust läge: Norvay-temat (skola). Det mörka läget nedan är oförändrat. */
+  --bg:#f5f3ec; --bg-grad:none; --surface:#FFFFFF; --ink:#123f37; --muted:#4f6b63; --line:rgba(18,63,55,.14);
+  --accent:#2f6b5a; --accent-ink:#FFFFFF; --btn:#2f6b5a; --ok:#1C7F45; --warn:#B8322A;
+  --plate:#d7e2d7; --plate-dot:#c3d3c4; --chip:#FFFFFF; --chip-line:#b9cbb9; --soft:#e6ede5;
+  --logo:#2f6b5a; --logo-kant:#24564a; --notis-kant:#F5C211; --kort-skugga:none; /* appens egna färger */
+  --band:#d7e2d7; --rubrik-em:#a4533c; --form-ljus:#f5f3ec; --form-prick:#dd9479; /* sidhuvudets band och form */
+  --serif:'Newsreader',Georgia,'Times New Roman',serif;
   box-sizing:border-box;
   padding-top:env(safe-area-inset-top,0px);
   padding-bottom:env(safe-area-inset-bottom,0px);
@@ -28,13 +30,13 @@
   :root:not([data-theme="light"]){
     --bg:#0F1A12; --bg-grad:#0F1A12; --surface:#17251A; --ink:#E3EFE5; --muted:#9DBCA5; --line:#2A3D2E;
     --accent:#81C784; --accent-ink:#0F1A12; --btn:#81C784; --ok:#66CC8A; --warn:#FF8173;
-    --plate:#1E3426; --plate-dot:#28452F; --chip:#1E2F22; --chip-line:#36513C; --soft:#1E2F22;
+    --plate:#1E3426; --plate-dot:#28452F; --chip:#1E2F22; --chip-line:#36513C; --soft:#1E2F22; --band:#1E2F22; --rubrik-em:#dd9479; --form-ljus:#0F1A12; --form-prick:#dd9479; --logo:#2e7d32; --logo-kant:#1b5e20; --kort-skugga:0 4px 20px rgba(27,94,32,.06);
   }
 }
 :root[data-theme="dark"]{
   --bg:#0F1A12; --bg-grad:#0F1A12; --surface:#17251A; --ink:#E3EFE5; --muted:#9DBCA5; --line:#2A3D2E;
   --accent:#81C784; --accent-ink:#0F1A12; --btn:#81C784; --ok:#66CC8A; --warn:#FF8173;
-  --plate:#1E3426; --plate-dot:#28452F; --chip:#1E2F22; --chip-line:#36513C; --soft:#1E2F22;
+  --plate:#1E3426; --plate-dot:#28452F; --chip:#1E2F22; --chip-line:#36513C; --soft:#1E2F22; --band:#1E2F22; --rubrik-em:#dd9479; --form-ljus:#0F1A12; --form-prick:#dd9479; --logo:#2e7d32; --logo-kant:#1b5e20; --kort-skugga:0 4px 20px rgba(27,94,32,.06);
 }
 *,*::before,*::after{box-sizing:inherit}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
@@ -46,10 +48,19 @@ h1,h2,h3{font-family:var(--serif)}
 h2{margin:0 0 6px;font-size:clamp(24px,4vw,30px);line-height:1.2}
 .lead{margin:0 0 18px;color:var(--muted);max-width:62ch}
 
-.top{display:flex;flex-wrap:wrap;gap:16px;align-items:flex-end;justify-content:space-between;margin-bottom:16px}
+/* Sidhuvud: Norvay-layouten "band" med formen "arc" */
+.top{display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center;margin-bottom:16px;background:var(--band);border-radius:32px;padding:28px 32px}
+.top-text{display:flex;flex-direction:column;align-items:flex-start;gap:16px}
+.n-motif{position:relative;width:120px;aspect-ratio:1}
+.n-motif::before,.n-motif::after{content:"";position:absolute}
+.n-motif--arc::before{inset:20% 15% 0 15%;background:var(--form-ljus);border-radius:999px 999px 0 0}
+.n-motif--arc::after{width:26%;aspect-ratio:1;border-radius:50%;background:var(--form-prick);top:10%;right:10%}
+@media (max-width:560px){.top{grid-template-columns:1fr;padding:22px 20px;border-radius:24px}.n-motif{width:80px;order:-1}}
+h1,h2,h3{font-weight:400;letter-spacing:-.01em}
 .brand{display:flex;align-items:center;gap:12px;cursor:pointer;background:none;border:0;padding:0;text-align:left}
-.brand h1{margin:0;font-size:clamp(30px,6vw,44px);line-height:1;font-weight:700;color:var(--accent)}
-.brand p{margin:4px 0 0;color:var(--muted);font-size:15px}
+.brand h1{margin:0;font-size:clamp(34px,6vw,50px);line-height:1;font-weight:400;color:var(--ink)}
+.brand h1 em{font-style:italic;color:var(--rubrik-em)}
+.brand p{margin:4px 0 0;color:var(--ink);font-size:15px}
 .seg{display:inline-flex;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:4px}
 .seg button{border:0;background:none;padding:9px 18px;border-radius:999px;cursor:pointer;font-weight:700;font-family:var(--serif)}
 .seg button[aria-pressed="true"]{background:var(--btn);color:var(--accent-ink)}
@@ -207,14 +218,17 @@ footer{margin-top:28px;color:var(--muted);font-size:14px}
 </div>
 <div class="wrap">
   <header class="top">
+    <div class="top-text">
     <button class="brand" id="home" aria-label="Till startsidan">
       <svg width="54" height="44" viewBox="-1 -8 62 47" aria-hidden="true"><rect x="4" y="-6" width="12" height="8" rx="2" style="fill:var(--logo);stroke:var(--logo-kant)" stroke-width="1.5"/><rect x="24" y="-6" width="12" height="8" rx="2" style="fill:var(--logo);stroke:var(--logo-kant)" stroke-width="1.5"/><rect x="44" y="-6" width="12" height="8" rx="2" style="fill:var(--logo);stroke:var(--logo-kant)" stroke-width="1.5"/><rect x="0" y="0" width="60" height="30" rx="3" style="fill:var(--logo);stroke:var(--logo-kant)" stroke-width="1.5"/></svg>
-      <span><h1>StartGuiden</h1><p>Svenska, skolan och samhället för förberedelseklass</p></span>
+      <span><h1>Start<em>Guiden</em></h1><p>Svenska, skolan och samhället för förberedelseklass</p></span>
     </button>
     <div class="seg" role="group" aria-label="Välj läge">
       <button id="modeS" aria-pressed="true">För elever</button>
       <button id="modeT" aria-pressed="false">För lärare</button>
     </div>
+    </div>
+    <div class="n-motif n-motif--arc" aria-hidden="true"></div>
   </header>
   <div class="tools"><label><input type="checkbox" id="slow" checked> Långsamt tal</label></div>
   <div id="voiceNotice" class="notice" hidden></div>

@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>StartGuiden – svenska för förberedelseklass</title>
+<title>Välkomstguiden – svenska, skolan och Sverige för förberedelseklass</title>
 <style>
 /* Lokala typsnitt (inga externa anrop). Lexend: SIL Open Font License 1.1, från @fontsource/lexend 5.3.0 */
 @font-face{font-family:'Lexend';font-style:normal;font-weight:400;font-display:swap;src:url('/fonts/lexend-latin-400-normal.woff2') format('woff2')}
@@ -58,7 +58,7 @@ h2{margin:0 0 6px;font-size:clamp(24px,4vw,30px);line-height:1.2}
 @media (max-width:560px){.top{grid-template-columns:1fr;padding:22px 20px;border-radius:24px}.n-motif{width:80px;order:-1}}
 h1,h2,h3{font-weight:400;letter-spacing:-.01em}
 .brand{display:flex;align-items:center;gap:12px;cursor:pointer;background:none;border:0;padding:0;text-align:left}
-.brand h1{margin:0;font-size:clamp(34px,6vw,50px);line-height:1;font-weight:400;color:var(--ink)}
+.brand h1{margin:0;font-size:clamp(32px,6vw,50px);line-height:1;font-weight:400;color:var(--ink)}
 .brand h1 em{font-style:italic;color:var(--rubrik-em)}
 .brand p{margin:4px 0 0;color:var(--ink);font-size:15px}
 .seg{display:inline-flex;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:4px}
@@ -196,6 +196,21 @@ footer{margin-top:28px;color:var(--muted);font-size:14px}
 .canbox{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px;margin-top:16px}
 .canbox h3{margin:0 0 8px}.canlist{display:grid;gap:7px}.canrow{display:flex;align-items:center;gap:9px;color:var(--ink);font-size:15px}.canrow input{width:18px;height:18px}
 
+/* ================= V3: stadium och Bra att veta ================= */
+.stages{display:grid;grid-template-columns:1fr;gap:12px;margin-top:14px}
+@media(min-width:600px){.stages{grid-template-columns:repeat(3,1fr)}}
+.stage{display:flex;flex-direction:column;align-items:flex-start;gap:4px;background:var(--surface);border:2px solid var(--line);border-radius:16px;padding:18px;cursor:pointer;text-align:left;min-height:130px}
+.stage:hover{border-color:var(--accent)}
+.stage .ic{font-size:44px;line-height:1}
+.stage .nm{font-weight:700;font-size:22px}
+.stage small{color:var(--muted);font-size:14px}
+.stagebar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:0 0 14px;color:var(--muted);font-size:15px}
+.stagebar b{color:var(--ink)}
+.linkbtn{border:0;background:none;color:var(--accent);font-weight:500;cursor:pointer;padding:4px 2px;text-decoration:underline;text-underline-offset:3px}
+.facts{display:grid;gap:10px}
+.fact{display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--soft);border-radius:12px;padding:14px 16px;font-size:18px}
+.fact .btn{flex:0 0 auto;padding:8px 12px}
+
 @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
 
 /* Gemensam Norvay-list överst. Nollställer det appens egna stilar kan ge, så att listen ser likadan ut i alla appar. */
@@ -209,7 +224,7 @@ footer{margin-top:28px;color:var(--muted);font-size:14px}
 .norvay-bar-mark { width: 24px; height: 24px; border: 1.5px solid #123f37; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-family: Georgia, serif; font-size: 13px; letter-spacing: 0; }
 @media print { .norvay-bar { display: none !important; } }
 </style>
- <!-- StartGuiden -->
+ <!-- Välkomstguiden (tidigare StartGuiden). Samma Umami-ID och tagg så att statistiken fortsätter. -->
 <script defer src="https://cloud.umami.is/script.js" data-website-id="2e81b730-fb1d-4183-9323-de51c8949318" data-tag="startguiden" data-do-not-track="true"></script> 
 </head>
 <body>
@@ -223,7 +238,7 @@ footer{margin-top:28px;color:var(--muted);font-size:14px}
     <div class="top-text">
     <button class="brand" id="home" aria-label="Till startsidan">
       <svg width="54" height="44" viewBox="-1 -8 62 47" aria-hidden="true"><rect x="4" y="-6" width="12" height="8" rx="2" style="fill:var(--logo);stroke:var(--logo-kant)" stroke-width="1.5"/><rect x="24" y="-6" width="12" height="8" rx="2" style="fill:var(--logo);stroke:var(--logo-kant)" stroke-width="1.5"/><rect x="44" y="-6" width="12" height="8" rx="2" style="fill:var(--logo);stroke:var(--logo-kant)" stroke-width="1.5"/><rect x="0" y="0" width="60" height="30" rx="3" style="fill:var(--logo);stroke:var(--logo-kant)" stroke-width="1.5"/></svg>
-      <span><h1>Start<em>Guiden</em></h1><p>Svenska, skolan och samhället för förberedelseklass</p></span>
+      <span><h1>Välkomst<em>Guiden</em></h1><p>Svenska, skolan och vardagen i Sverige för förberedelseklass</p></span>
     </button>
     <div class="seg" role="group" aria-label="Välj läge">
       <button id="modeS" aria-pressed="true">För elever</button>
@@ -235,7 +250,7 @@ footer{margin-top:28px;color:var(--muted);font-size:14px}
   <div class="tools"><label><input type="checkbox" id="slow" checked> Långsamt tal</label></div>
   <div id="voiceNotice" class="notice" hidden></div>
   <main id="app"></main>
-  <footer>Ljudet använder enhetens inbyggda svenska röst. Elevernas stjärnor och "Jag kan" sparas bara på den här enheten.</footer>
+  <footer>Ljudet använder enhetens inbyggda svenska röst. Elevernas stjärnor, årskurs och "Jag kan" sparas bara på den här enheten.</footer>
 </div>
 
 <script>
@@ -256,11 +271,22 @@ const SIZES = {
   l:{studs:4,f:2.0,ind:'stor',def:'stora',sup:'största'}
 };
 const GRADE_NAMES = {'13':'Åk 1–3','46':'Åk 4–6','79':'Åk 7–9'};
+const STAGES = [
+  {g:'13', ic:'🧒', nm:'Åk 1–3', sub:'Lågstadiet', say:'Årskurs ett till tre'},
+  {g:'46', ic:'🧑', nm:'Åk 4–6', sub:'Mellanstadiet', say:'Årskurs fyra till sex'},
+  {g:'79', ic:'🧑‍🎓', nm:'Åk 7–9', sub:'Högstadiet', say:'Årskurs sju till nio'}
+];
 
 const THEMES = [
 { id:'klassrummet', name:'I klassrummet', icon:'🙋', tc:'#1E5FD0',
   words:[['lyssna','👂','Lyssna på läraren.'],['titta','👀','Titta på tavlan.'],['skriv','✍️','Skriv ditt namn.'],['läs','📖','Läs texten.'],['räck upp handen','🙋','Räck upp handen om du vill säga något.'],['sätt dig','🪑','Sätt dig på din plats.'],['en uppgift','📝','Jag gör uppgiften.'],['en fråga','❓','Jag har en fråga.'],['ett svar','💬','Jag vet svaret.'],['en kompis','🧑‍🤝‍🧑','Jag arbetar med min kompis.']],
   sentences:['Jag förstår inte.','Kan du säga det igen?','Kan du hjälpa mig?','Jag har en fråga.','Är du klar?'],
+  facts:{
+    all:['Det är bra att fråga. Läraren vill att du säger till när du inte förstår.','I Sverige säger man förnamnet till läraren. Man säger ”du”.','Man arbetar ofta i par eller i grupp.','Man räcker upp handen när man vill säga något.'],
+    '13':['Ibland sitter man på mattan och lyssnar på läraren.','Du har ofta en egen låda eller hylla för dina saker.'],
+    '46':['Ibland får man läxor. Läxan gör man hemma.','Ibland arbetar man på datorn eller läsplattan.'],
+    '79':['Läraren vill höra vad du tycker. Det är bra att säga vad man tycker.','Man byter ofta klassrum mellan lektionerna.','Ibland har man prov. Läraren säger till innan.']
+  },
   plan:{ goal:'Eleverna kan förstå och använda vanliga ord och instruktioner i klassrummet.',
     steps:[['Visa och gör','5 min','Läraren visar: lyssna, titta, öppna, stäng, skriv. Eleverna gör samtidigt.'],['Instruktionslek','10 min','Ge korta instruktioner: "Ta fram pennan", "Öppna boken", "Titta här". Eleverna visar med handling.'],['Fraser','10 min','Öva "Jag förstår inte", "Kan du säga det igen?" och "Kan du hjälpa mig?" med en kompis.'],['Klassrumsbingo','10 min','Eleverna kryssar ord de hör under en kort lektion eller aktivitet.']],
     grades:{'13':'Använd en instruktion i taget och mycket bilder. Låt eleven visa med kroppen innan eleven behöver säga något.','46':'Kombinera instruktioner: "Öppna boken och skriv ditt namn." Öva enkla frågor till läraren.','79':'Arbeta med naturligt skolspråk och skillnaden mellan formellt och vardagligt språk. Öva i riktiga klassrumssituationer.'},
@@ -269,6 +295,12 @@ const THEMES = [
 { id:'hej', name:'Hej och känslor', icon:'👋', tc:'#F5C211',
   words:[['hej','👋','Hej! Hur mår du?'],['tack','🙏','Tack för hjälpen!'],['ja','✅','Ja, tack.'],['nej','❌','Nej, tack.'],['glad','😀','Jag är glad i dag.'],['ledsen','😢','Hon är ledsen.'],['arg','😠','Han är arg.'],['trött','😴','Jag är trött.'],['rädd','😨','Jag är rädd.'],['sjuk','🤒','Jag är sjuk i dag.'],['hungrig','🍽️','Jag är hungrig.'],['en vän','🧑‍🤝‍🧑','Det här är min vän.']],
   sentences:['Hej, jag heter Ali.','Hur mår du?','Jag är glad i dag.','Tack för hjälpen.','Jag är trött i dag.'],
+  facts:{
+    all:['I Sverige säger man ofta bara ”hej”, både till barn och vuxna.','Man tittar på personen när man hälsar.','Det är okej att känna sig ledsen, trött eller rädd i början. Prata med en vuxen du litar på.'],
+    '13':['Säg ”hej” till din lärare när du kommer till skolan på morgonen.'],
+    '46':['Du kan fråga en kompis: ”Hur mår du?”'],
+    '79':['Med kompisar säger man ofta ”tjena” eller ”hallå”. Med vuxna säger man oftast ”hej”.']
+  },
   plan:{ goal:'Eleverna kan hälsa, säga sitt namn, fråga hur någon mår och berätta hur de själva känner sig.',
     steps:[['Hälsningsring','5 min','Stå i ring. Hälsa på varje elev med namn. Eleven svarar: "Hej, jag heter ...".'],['Ordkort','10 min','Visa känsloorden på storskärm. Eleverna härmar ansiktsuttrycket och säger ordet.'],['Känslocharader','15 min','En elev visar en känsla med ansiktet, de andra gissar: "Du är trött!" Avsluta med Lyssna och välj.'],['Dagens känsla','5 min','Varje elev pekar på en känsla och säger: "I dag är jag ...".']],
     grades:{'13':'Fokusera på glad, ledsen, arg och trött. En känslotermometer på väggen hjälper eleverna att visa hur de mår utan ord.','46':'Lägg till varför: "Jag är glad för att ...". Låt eleverna fråga varandra hur de mår.','79':'Prata om olika sätt att hälsa: hej, tjena, god morgon. När använder man vad, och med vem?'},
@@ -277,6 +309,12 @@ const THEMES = [
 { id:'kroppen', name:'Kroppen', icon:'✋', tc:'#F07F13',
   words:[['ett öga','👁️','Jag ser med ögonen.'],['ett öra','👂','Jag hör med öronen.'],['en näsa','👃','Jag luktar med näsan.'],['en mun','👄','Jag äter med munnen.'],['en tand','🦷','Jag borstar tänderna.'],['en tunga','👅','Räck ut tungan.'],['en hand','✋','Jag tvättar händerna.'],['en arm','💪','Lyft armen.'],['ett ben','🦵','Jag springer med benen.'],['en fot','🦶','Jag har ont i foten.'],['hår','💇','Hon har långt hår.']],
   sentences:['Jag har ont i magen.','Jag tvättar mina händer.','Jag ser med ögonen.','Hon har långt hår.','Jag har ont i huvudet.'],
+  facts:{
+    all:['Skolsköterskan hjälper dig om du har ont eller känner dig sjuk.','Det kostar ingenting att gå till skolsköterskan.','Om du är sjuk stannar du hemma. En vuxen ringer till skolan och berättar det.'],
+    '13':['Tvätta händerna innan du äter och efter toaletten.'],
+    '46':['På idrotten byter man om till andra kläder och skor.'],
+    '79':['Det du berättar för skolsköterskan stannar där. Men om du inte är trygg ser skolsköterskan till att du får hjälp.']
+  },
   plan:{ goal:'Eleverna kan namnge kroppsdelar och berätta var de har ont, till exempel hos skolsköterskan.',
     steps:[['Huvud, axlar, knä och tå','5 min','Sjung och peka. Sakta först, sedan snabbare.'],['Ordkort','10 min','Gå igenom orden. Eleverna pekar på sin egen kroppsdel när de hör ordet.'],['Läraren säger','15 min','"Peka på näsan! Lyft armen!" Alla är kvar i leken även om de gör fel. Avsluta med Lyssna och välj.'],['Jag har ont i ...','5 min','Öva meningen inför ett besök hos skolsköterskan. Varje elev säger en mening.']],
     grades:{'13':'Lek mycket. Rita och klipp ut en kropp i par och sätt ord på delarna.','46':'Lägg till plural: en hand, två händer. Öva "Jag har ont i ..." i par.','79':'Koppla till idrott och hälsa. Gör ett rollspel hos skolsköterskan med frågor och svar.'},
@@ -285,6 +323,9 @@ const THEMES = [
 { id:'farger', name:'Färger och storlek', icon:'🧱', tc:'#D62839', lego:true,
   words:[['röd','🟥','Tomaten är röd.',0],['blå','🟦','Himlen är blå.',1],['gul','🟨','Solen är gul.',2],['grön','🟩','Gräset är grönt.',3],['orange','🟧','Apelsinen är orange.',4],['lila','🟪','Blomman är lila.',5],['vit','⬜','Snön är vit.',6],['svart','⬛','Katten är svart.',7],['brun','🟫','Björnen är brun.'],['liten','🐭','Musen är liten.'],['stor','🐘','Elefanten är stor.']],
   sentences:['Den lilla klossen är blå.','Jag har tre gula klossar.','Den röda klossen är stor.','Elefanten är stor.','Musen är liten.'],
+  facts:{
+    all:['Sveriges flagga är blå och gul.','När gubben vid övergångsstället är grön får du gå. När den är röd ska du vänta.','När det är mörkt ute är det bra att ha en reflex. Då ser bilarna dig.']
+  },
   plan:{ goal:'Eleverna kan säga färger och storlek, använda orden i korta meningar och följa en muntlig byggbeskrivning.',
     steps:[['Ring och kloss','5 min','Visa en kloss och säg "en röd kloss". Alla säger efter i kör. Skicka runt klossen.'],['Ordkort och Hitta klossen','15 min','Visa appen på storskärm. Eleverna turas om att trycka och säger svaret högt.'],['Legouppdrag i par','15 min','Läs upp ett uppdrag. Paren bygger. Gå runt och fråga: "Vilken färg är den här?"'],['Visa och berätta','5 min','Varje elev visar sitt bygge och säger en mening om det.']],
     grades:{'13':'Låt eleven peka och visa. Börja med fyra färger och liten och stor.','46':'Lägg till jämförelser: större än, mindre än. Gör barriärövning där en elev beskriver och en bygger utan att titta.','79':'Rama in legot som en övning i kommunikation och precision, så känns det inte barnsligt. Eleverna skriver byggbeskrivningar med först, sedan och sist.'},
@@ -293,6 +334,12 @@ const THEMES = [
 { id:'siffror', name:'Siffror och tid', icon:'🔢', tc:'#1E5FD0',
   words:[['ett','1️⃣','Jag har ett äpple.'],['två','2️⃣','Jag har två händer.'],['tre','3️⃣','Vi är tre i gruppen.'],['fyra','4️⃣','Bordet har fyra ben.'],['fem','5️⃣','Handen har fem fingrar.'],['sex','6️⃣','Jag vaknar klockan sex.'],['sju','7️⃣','En vecka har sju dagar.'],['åtta','8️⃣','Skolan börjar klockan åtta.'],['nio','9️⃣','Jag är nio år.'],['tio','🔟','Jag har tio fingrar.'],['en klocka','⏰','Vad är klockan?'],['en kalender','📅','I dag är det måndag.']],
   sentences:['Jag är tio år.','Klockan är åtta.','I dag är det måndag.','En vecka har sju dagar.','Vad är klockan?'],
+  facts:{
+    all:['Skolan börjar på samma tid varje dag. Det är viktigt att komma i tid.','Veckan börjar på måndag. På lördag och söndag är skolan stängd.','I Sverige skriver man datum så här: 2026-10-20. Först år, sedan månad, sist dag.'],
+    '13':['Klockan i klassrummet visar när det är rast och lunch.'],
+    '46':['Ditt schema visar vilka lektioner du har varje dag.'],
+    '79':['I Sverige använder man ofta 24-timmarsklocka. Klockan 14.30 är halv tre på eftermiddagen.']
+  },
   plan:{ goal:'Eleverna kan räkna till tio, säga sin ålder, säga veckodagarna och förstå hela klockslag.',
     steps:[['Räkna tillsammans','5 min','Räkna till tio i kör med fingrarna. Räkna baklänges också.'],['Ordkort','10 min','Gå igenom siffrorna. Eleverna visar rätt antal fingrar.'],['Sifferbingo','15 min','Eleverna skriver fem siffror. Du säger siffror högt. Fem rätt ger bingo. Avsluta med Lyssna och välj.'],['Klockan och schemat','5 min','Titta på schemat. När börjar skolan? När är det lunch?']],
     grades:{'13':'Räkna saker i klassrummet: pennor, stolar, fönster. Sjung en veckodagssång.','46':'Lägg till veckodagarna och schemat. Öva "I dag är det ..." och "I morgon är det ...".','79':'Lägg till tal upp till hundra, priser och tider för buss och tåg.'},
@@ -300,15 +347,57 @@ const THEMES = [
     mother:'Räkna till tio på alla språk i klassen. Jämför hur siffrorna skrivs.' }},
 { id:'skolan', name:'Skolan', icon:'🏫', tc:'#2A9D55',
   words:[['en penna','✏️','Jag har en penna.'],['en bok','📕','Öppna boken.'],['en sax','✂️','Får jag låna en sax?'],['en linjal','📏','Jag mäter med linjalen.'],['ett papper','📄','Skriv på papperet.'],['en ryggsäck','🎒','Ryggsäcken är tung.'],['en dator','💻','Logga in på datorn.'],['en lärare','🧑‍🏫','Läraren hjälper mig.'],['skolan','🏫','Jag går i skolan.'],['matsalen','🍽️','Vi äter i matsalen.'],['rasten','⚽','Vi spelar fotboll på rasten.'],['toaletten','🚻','Får jag gå på toaletten?']],
+  stageWords:{
+    '13':[['fritids','🧸','Efter skolan går jag på fritids.']],
+    '46':[['ett schema','🗓️','Titta på schemat.'],['läxor','📚','Jag gör mina läxor.']],
+    '79':[['ett betyg','📊','Jag fick ett bra betyg.'],['ett prov','📝','I morgon har vi prov.'],['gymnasiet','🎓','Efter nian börjar jag på gymnasiet.']]
+  },
   sentences:['Får jag gå på toa?','Jag behöver hjälp.','Var är matsalen?','Jag har glömt min penna.','Kan du säga det igen?'],
+  stageSentences:{
+    '13':['Jag går på fritids.'],
+    '79':['I morgon har vi prov.','Jag vill veta mer om gymnasiet.']
+  },
+  facts:{
+    all:['Alla barn i Sverige går i skolan. Skolan är gratis.','Skollunchen är gratis. Alla elever får äta.','Du ska vara i skolan varje dag. Om du är sjuk ringer en vuxen till skolan.','Flickor och pojkar läser samma ämnen, även idrott och simning.'],
+    '13':['Efter skolan kan du gå på fritids om dina föräldrar arbetar eller studerar.','På rasten är man ofta ute, även när det regnar eller är kallt.'],
+    '46':['Från årskurs 6 får du betyg.','På idrotten lär man sig att simma.'],
+    '79':['Betygen går från A till F. A är högst. E betyder att du har klarat kursen. F betyder att du inte har klarat den än.','Efter årskurs 9 väljer man gymnasium. Studie- och yrkesvägledaren hjälper dig att välja.','I årskurs 8 eller 9 gör man prao. Då är man på en arbetsplats några dagar.','Skolan har regler för mobilen. Fråga vad som gäller på din skola.']
+  },
   plan:{ goal:'Eleverna kan namnge saker och platser i skolan och använda viktiga fraser som "Får jag gå på toa?" och "Jag behöver hjälp".',
     steps:[['Skolvandring','10 min','Gå runt i skolan. Stanna vid matsalen, toaletten, biblioteket och kuratorns rum. Säg namnet tillsammans.'],['Ordkort','10 min','Gå igenom sakerna i klassrummet. Eleverna håller upp rätt sak när de hör ordet.'],['Fråga om lov','15 min','Öva fraserna i rollspel. Använd Bygg meningen som stöd.'],['Viktigaste frasen','5 min','Varje elev väljer den fras som är viktigast för hen och säger den.']],
     grades:{'13':'Sätt bildstöd på dörrar och lådor så att eleverna hittar själva.','46':'Öva schemat och ämnenas namn. Vad gör vi på idrotten, i slöjden, på musiken?','79':'Prata om hur svensk skola fungerar: närvaro, mentor, betyg och vem man frågar om vad.'},
     ideas:['Fotografera platser i skolan och gör ett eget bildlexikon.','Skattjakt med ordlappar på olika platser.','Frasbokmärke med de viktigaste fraserna.'],
     mother:'Studiehandledaren kan förklara hur svensk skola skiljer sig från skolan i hemlandet. Låt eleverna berätta hur det var där.' }},
+{ id:'kompisar', name:'Kompisar och fritid', icon:'🙌', tc:'#F07F13',
+  words:[['en kompis','🧑‍🤝‍🧑','Hon är min kompis.'],['leka','🤸','Vi leker på rasten.'],['spela','⚽','Vill du spela fotboll?'],['vara med','🙋','Får jag vara med?'],['dela','🤲','Vi delar på bollen.'],['vänta','⏳','Jag väntar på min tur.'],['förlåt','🙇','Förlåt, det var inte meningen.'],['säga nej','✋','Det är okej att säga nej.'],['en förening','🏅','Jag spelar fotboll i en förening.'],['fritidsgården','🏓','Vi träffas på fritidsgården.']],
+  stageWords:{
+    '13':[['kurragömma','🙈','Vi leker kurragömma.'],['tafatt','🏃','Vi leker tafatt på rasten.']],
+    '79':[['umgås','💬','Vi umgås efter skolan.'],['ett sms','📱','Jag skickar ett sms till min kompis.']]
+  },
+  sentences:['Får jag vara med?','Vill du leka med mig?','Vill du spela fotboll?','Förlåt, det var inte meningen.','Nej, jag vill inte.'],
+  stageSentences:{
+    '13':['Jag leker på rasten.'],
+    '79':['Vill du hänga efter skolan?','Jag umgås med mina kompisar på rasten.']
+  },
+  facts:{
+    all:['Det är okej att fråga: ”Får jag vara med?”','Man turas om och väntar på sin tur.','Det är okej att säga nej. Det är också okej när någon annan säger nej.','Om någon är elak mot dig, berätta för en vuxen.'],
+    '13':['På rasten leker man ofta ute. Det finns vuxna ute på rasten som du kan fråga.'],
+    '46':['Många barn spelar fotboll, dansar eller simmar i en förening efter skolan.'],
+    '79':['Fritidsgården är en plats för unga efter skolan. Där finns vuxna, spel och aktiviteter.','Tänk på vad du skriver och skickar i mobilen. Det kan spridas till många.']
+  },
+  plan:{ goal:'Eleverna kan ta kontakt med andra, fråga om de får vara med, säga nej och be om förlåtelse, och känner till fritidsaktiviteter i närheten.',
+    steps:[['Får jag vara med?','5 min','Visa en bild på barn som leker. Öva frågan i kör.'],['Ordkort','10 min','Gå igenom orden. Eleverna visar med kroppen: dela, vänta, säga nej.'],['Rollspel','15 min','Eleverna övar i par: fråga om att vara med, säga ja, säga nej och säga förlåt.'],['Fritid här','10 min','Vad kan man göra efter skolan? Visa fritidsgården, föreningar och biblioteket i närheten.']],
+    grades:{'13':'Lek riktiga rastlekar och öva orden medan ni leker. Visa var de vuxna på rasten finns.','46':'Prata om föreningar och vad man kan göra efter skolan. Låt eleverna berätta vad de tycker om att göra.','79':'Prata om fritidsgården, att umgås, grupptryck och livet på nätet. Öva att säga nej på ett tydligt sätt.'},
+    ideas:['Rastlekskort med bilder.','Bjud in en förening eller en fritidsledare.','Gör en karta över fritidsaktiviteter nära skolan.'],
+    mother:'Låt eleverna lära klassen en lek eller ett spel från sitt land. Var lyhörd för att en del elever har lite fritid hemma, till exempel för att de tar hand om syskon.' }},
 { id:'hemmet', name:'Hem och familj', icon:'🏠', tc:'#7B4FC9',
   words:[['mamma','👩','Min mamma heter Amina.'],['pappa','👨','Min pappa lagar mat.'],['en bror','👦','Jag har en bror.'],['en syster','👧','Min syster är sju år.'],['en bebis','👶','Bebisen sover.'],['mormor','👵','Mormor bor i Syrien.'],['ett hus','🏠','Vi bor i ett hus.'],['en lägenhet','🏢','Jag bor i en lägenhet.'],['en säng','🛏️','Jag sover i sängen.'],['en dörr','🚪','Stäng dörren, tack.'],['ett fönster','🪟','Öppna fönstret.'],['ett kök','🍳','Vi äter i köket.']],
   sentences:['Jag bor i en lägenhet.','Jag har två bröder.','Min mamma heter Amina.','Vi äter middag i köket.','Min syster är sju år.'],
+  facts:{
+    all:['Familjer ser olika ut. Alla familjer är lika mycket värda.','I Sverige tar man oftast av sig skorna när man kommer in i ett hem.','Skolan skickar information till dina föräldrar, ofta i en app eller ett mejl.','Dina föräldrar kan få hjälp av en tolk på möten med skolan.'],
+    '46':['Ni har utvecklingssamtal. Då pratar du, din förälder och din mentor om hur det går i skolan.'],
+    '79':['Ni har utvecklingssamtal. Då pratar du, din förälder och din mentor om hur det går i skolan och vad du vill göra efter nian.']
+  },
   plan:{ goal:'Eleverna kan berätta om sin familj och sitt hem med enkla meningar.',
     steps:[['En familj','5 min','Visa en bild på en familj och berätta. Eleverna lyssnar och pekar.'],['Ordkort','10 min','Gå igenom ord för familjen och hemmet.'],['Rita och berätta','15 min','Eleverna ritar sitt hem eller sin familj och berättar för en kompis.'],['En mening var','5 min','Varje elev säger en mening: "Jag bor i ..." eller "Jag har en ...".']],
     grades:{'13':'Använd dockor eller figurer. Låt eleverna peka i stället för att säga allt.','46':'Lägg till plural: en bror, två bröder. Öva att fråga om kompisens familj.','79':'Eleverna skriver en kort text om sin familj eller sitt hem.'},
@@ -317,31 +406,71 @@ const THEMES = [
 { id:'mat', name:'Mat och kläder', icon:'🍎', tc:'#2A9D55',
   words:[['ett äpple','🍎','Jag äter ett äpple.'],['en banan','🍌','Bananen är gul.'],['bröd','🍞','Jag vill ha bröd.'],['mjölk','🥛','Jag dricker mjölk.'],['vatten','💧','Jag vill ha vatten, tack.'],['fisk','🐟','I dag äter vi fisk.'],['en jacka','🧥','Ta på dig jackan.'],['en tröja','👕','Tröjan är blå.'],['byxor','👖','Jag har nya byxor.'],['skor','👟','Ta av dig skorna.'],['vantar','🧤','Det är kallt, ta vantar.'],['en halsduk','🧣','Jag har en halsduk.']],
   sentences:['Jag vill ha vatten, tack.','Jag äter inte fläsk.','Det är kallt ute.','Ta på dig jackan.','Jag tycker om fisk.'],
+  facts:{
+    all:['I matsalen tar man oftast mat själv. Ta så mycket som du orkar äta.','Du kan få mat utan fläsk. Säg till personalen i matsalen.','I Sverige kan man dricka vatten direkt från kranen.','Om du är allergisk mot någon mat, berätta för skolan.','På vintern behöver du varm jacka, mössa, vantar och varma skor.'],
+    '13':['Ta med extra kläder till skolan. Ibland blir man blöt när man leker ute.'],
+    '79':['Det är bra att äta frukost innan skolan. Då orkar du mer.']
+  },
   plan:{ goal:'Eleverna kan namnge vanlig mat och kläder, be om något artigt och klä sig efter vädret.',
     steps:[['Dagens lunch','5 min','Titta på dagens lunchmeny tillsammans. Vad finns? Vad tycker du om?'],['Ordkort','10 min','Gå igenom mat och kläder.'],['Affären','15 min','Rollspel: en elev säljer, en köper. "Jag vill ha ett äpple, tack."'],['Väder och kläder','5 min','Titta ut genom fönstret. Vad behöver vi ha på oss i dag?']],
     grades:{'13':'Använd riktiga kläder från kapprummet och låt eleverna klä på sig i rätt ordning.','46':'Öva årstiderna och vilka kläder som passar till dem.','79':'Läs en matsedel och en innehållsförteckning. Öva att fråga om maten innehåller fläsk, nötter eller mjölk.'},
     ideas:['Låtsasaffär med prislappar.','Väderdocka som kläs varje morgon.','Klassens favoritmat i ett diagram.'],
     mother:'Låt eleverna berätta om en favoriträtt hemifrån och vad ingredienserna heter på båda språken.' }},
 { id:'samhallet', name:'Samhället', icon:'🚌', tc:'#1E5FD0',
-  words:[['en affär','🛒','Vi handlar i affären.'],['en buss','🚌','Bussen kommer nu.'],['ett tåg','🚆','Tåget går till Stockholm.'],['en cykel','🚲','Jag cyklar till skolan.'],['ett sjukhus','🏥','Hon är på sjukhuset.'],['en läkare','🩺','Läkaren hjälper mig.'],['polisen','👮','Polisen hjälper till.'],['brandkåren','🚒','Brandkåren släcker elden.'],['biblioteket','📚','Jag lånar en bok på biblioteket.'],['en park','🌳','Vi leker i parken.'],['pengar','💵','Jag betalar med pengar.']],
-  sentences:['Vi handlar mat i affären.','Bussen går klockan åtta.','Jag lånar en bok på biblioteket.','Ring 112 vid fara.','Jag cyklar till skolan.'],
-  plan:{ goal:'Eleverna känner till viktiga platser och yrken i samhället och vet när och hur man ringer 112.',
-    steps:[['Var bor vi?','5 min','Visa en karta över orten. Var ligger skolan? Var bor eleverna ungefär?'],['Ordkort','10 min','Gå igenom platser och yrken.'],['Vart går du om ...?','15 min','Säg en situation: "Du vill låna en bok." Eleverna svarar med platsen.'],['112','5 min','Öva när man ringer 112 och vad man säger: vad har hänt och var.']],
+  words:[['en affär','🛒','Vi handlar i affären.'],['en buss','🚌','Bussen kommer nu.'],['ett tåg','🚆','Tåget går till Stockholm.'],['en cykel','🚲','Jag cyklar till skolan.'],['ett sjukhus','🏥','Hon är på sjukhuset.'],['en läkare','🩺','Läkaren hjälper mig.'],['polisen','👮','Polisen hjälper till.'],['brandkåren','🚒','Brandkåren släcker elden.'],['biblioteket','📚','Jag lånar en bok på biblioteket.'],['en park','🌳','Vi leker i parken.'],['pengar','💵','Jag betalar med pengar.'],['1177','📞','Ring 1177 om du är sjuk.']],
+  sentences:['Vi handlar mat i affären.','Bussen går klockan åtta.','Jag lånar en bok på biblioteket.','Ring 112 vid fara.','Ring 1177 om du är sjuk.'],
+  facts:{
+    all:['Ring 112 om det är fara, brand eller om någon är mycket sjuk eller skadad.','Ring 1177 om du är sjuk och vill få råd.','Biblioteket är gratis. Där kan du låna böcker, även på ditt eget språk.','I Sverige står man i kö och väntar på sin tur.'],
+    '13':['Om du har gått vilse, fråga en vuxen eller gå in i en affär och be om hjälp.'],
+    '46':['Allemansrätten betyder att alla får vara ute i naturen, i skogen och vid sjöar.'],
+    '79':['Allemansrätten betyder att alla får vara ute i naturen. Man ska vara rädd om naturen och inte skräpa ner.','Många betalar med kort eller med Swish i mobilen.']
+  },
+  plan:{ goal:'Eleverna känner till viktiga platser och yrken i samhället och vet när och hur man ringer 112 och 1177.',
+    steps:[['Var bor vi?','5 min','Visa en karta över orten. Var ligger skolan? Var bor eleverna ungefär?'],['Ordkort','10 min','Gå igenom platser och yrken.'],['Vart går du om ...?','15 min','Säg en situation: "Du vill låna en bok." Eleverna svarar med platsen.'],['112 och 1177','5 min','Öva när man ringer 112 och vad man säger: vad har hänt och var. Förklara skillnaden mot 1177.']],
     grades:{'13':'Bygg en liten stad med lego eller kartong och lek i den.','46':'Öva att åka buss: tidtabell, biljett och hållplats.','79':'Prata om biblioteket, vårdcentralen, allemansrätten och hur man bokar en tid.'},
     ideas:['Studiebesök på biblioteket med eget lånekort.','Bjud in en polis eller brandman.','Fotopromenad i närområdet.'],
     mother:'Jämför samhället här och i hemlandet. Vad är likt och vad är olika? Var lyhörd för att polis och myndigheter kan väcka olika känslor.' }},
+{ id:'aret', name:'Året i Sverige', icon:'🍂', tc:'#7B4FC9',
+  words:[['vår','🌷','På våren blir det varmare.'],['sommar','☀️','På sommaren är det ljust länge.'],['höst','🍂','På hösten faller löven.'],['vinter','❄️','På vintern kan det snöa.'],['snö','☃️','Vi bygger en snögubbe.'],['regn','🌧️','Ta på dig regnkläder.'],['mörkt','🌙','På vintern blir det mörkt tidigt.'],['ljust','🌞','På sommaren är det ljust.'],['ett lov','🏖️','Vi har lov från skolan.'],['jul','🎄','I december firar många jul.'],['Lucia','🕯️','Den 13 december firar man Lucia.'],['midsommar','🌼','Midsommar firas i juni.']],
+  sentences:['Det snöar i dag.','På vintern är det mörkt.','Vi har lov nästa vecka.','Jag har varma kläder.','Det regnar ute.'],
+  facts:{
+    all:['Sverige har fyra årstider: vår, sommar, höst och vinter.','På vintern är det mörkt och kallt. På sommaren är det ljust länge på kvällen.','Många svenskar säger: ”Det finns inget dåligt väder, bara dåliga kläder.”','Skolan har lov flera gånger om året, till exempel höstlov, jullov, sportlov, påsklov och sommarlov.','Människor i Sverige har olika religioner och firar olika högtider. Du får gärna berätta om dina högtider.'],
+    '13':['En reflexväst gör att man syns när det är mörkt.'],
+    '46':['Sommarlovet är långt, ungefär tio veckor.'],
+    '79':['Sveriges nationaldag är den 6 juni.','När det är mörkt länge kan man bli trött. Det hjälper att vara ute när det är ljust och att röra på sig.']
+  },
+  plan:{ goal:'Eleverna kan prata om årstider, väder och kläder och känner till lov och några högtider i Sverige.',
+    steps:[['Titta ut','5 min','Hur är vädret i dag? Vilken årstid är det?'],['Ordkort','10 min','Gå igenom årstider, väder och högtider.'],['Årshjulet','15 min','Rita ett årshjul tillsammans. Sätt ut årstider, lov och högtider, både svenska och elevernas egna.'],['Vad har jag på mig?','5 min','Eleverna säger vilka kläder som passar dagens väder.']],
+    grades:{'13':'Klä en väderdocka och sjung om årstiderna.','46':'Gör ett eget årshjul med lov och klassens födelsedagar.','79':'Prata om mörkret på vintern och hur man tar hand om sig med ljus, rörelse och sömn. Jämför klimatet med andra länder.'},
+    ideas:['Klassens årshjul på väggen.','Väderrapport varje morgon.','Elevernas högtider i en gemensam kalender.'],
+    mother:'Låt eleverna berätta om årstider och högtider i sina hemländer. Var lyhörd för att högtider kan väcka både glädje och saknad.' }},
 { id:'trygg', name:'Trygg i skolan', icon:'🤝', tc:'#F5C211',
-  words:[['en vuxen','🧑','Fråga en vuxen.'],['kuratorn','💬','Jag vill prata med kuratorn.'],['skolsköterskan','🩹','Skolsköterskan hjälper mig.'],['rektorn','🏫','Rektorn bestämmer i skolan.'],['hjälp','🆘','Jag behöver hjälp.'],['stopp','🛑','Säg stopp!'],['trygg','🛡️','Jag känner mig trygg.'],['en regel','📋','Vi följer reglerna.'],['snäll','🤝','Var snäll mot alla.'],['rättigheter','⚖️','Alla barn har rättigheter.']],
+  words:[['en vuxen','🧑','Fråga en vuxen.'],['mentorn','🧭','Min mentor hjälper mig.'],['kuratorn','💬','Jag vill prata med kuratorn.'],['skolsköterskan','🩹','Skolsköterskan hjälper mig.'],['studiehandledaren','🗣️','Studiehandledaren förklarar på mitt språk.'],['modersmålsläraren','🌍','Jag läser mitt språk med modersmålsläraren.'],['rektorn','🏫','Rektorn bestämmer i skolan.'],['hjälp','🆘','Jag behöver hjälp.'],['stopp','🛑','Säg stopp!'],['trygg','🛡️','Jag känner mig trygg.'],['en regel','📋','Vi följer reglerna.'],['snäll','🤝','Var snäll mot alla.'],['rättigheter','⚖️','Alla barn har rättigheter.']],
   sentences:['Jag vill prata med kuratorn.','Alla barn har rätt att gå i skolan.','Säg stopp om någon gör dig illa.','Du kan alltid fråga en vuxen.','Jag behöver hjälp.'],
+  facts:{
+    all:['Din mentor är den lärare som har extra koll på dig. Gå till mentorn om något är svårt.','Studiehandledaren kan förklara skolarbetet på ditt språk.','Med kuratorn kan du prata om sådant som känns svårt, i skolan eller hemma.','Alla barn har rätt att vara trygga. Ingen får slå ett barn, inte heller en vuxen.'],
+    '13':['Om någon gör dig illa, säg stopp och berätta för en vuxen.'],
+    '46':['Om någon är elak mot dig många gånger kan det vara mobbning. Berätta för en vuxen. Skolan måste hjälpa dig.'],
+    '79':['Skolan måste göra något om någon blir kränkt. Du kan berätta för din mentor, kuratorn eller rektorn.']
+  },
   plan:{ goal:'Eleverna vet vilka vuxna de kan vända sig till, känner till några grundläggande rättigheter och kan säga stopp.',
-    steps:[['Vilka vuxna finns här?','10 min','Visa bilder på lärare, kurator, skolsköterska och rektor. Gör gärna ett besök hos kuratorn.'],['Ordkort','10 min','Gå igenom orden och fraserna.'],['Säg stopp','10 min','Öva att säga stopp tydligt med röst och hand. Prata om vad man gör sedan: man berättar för en vuxen.'],['Barnkonventionen','10 min','Alla barn har rättigheter. Välj två att prata om, till exempel rätten till skola och rätten att vara trygg.']],
+    steps:[['Vilka vuxna finns här?','10 min','Visa bilder på mentor, lärare, studiehandledare, kurator, skolsköterska och rektor. Gör gärna ett besök hos kuratorn.'],['Ordkort','10 min','Gå igenom orden och fraserna.'],['Säg stopp','10 min','Öva att säga stopp tydligt med röst och hand. Prata om vad man gör sedan: man berättar för en vuxen.'],['Barnkonventionen','10 min','Alla barn har rättigheter. Välj två att prata om, till exempel rätten till skola och rätten att vara trygg.']],
     grades:{'13':'Använd bilder och enkla ord. Fokusera på frasen "Jag vill prata med en vuxen".','46':'Prata om vänskap, regler och vad kränkningar och mobbning är.','79':'Prata om likabehandling, barnkonventionen och vart man vänder sig om något händer i skolan eller hemma.'},
     ideas:['Foton på skolans vuxna med namn på väggen.','Klassens regler med bilder.','Kuratorn besöker klassen och presenterar sig.'],
     mother:'Barnkonventionen finns översatt till många språk. Låt eleverna läsa någon artikel på sitt modersmål. Var uppmärksam på elever som reagerar starkt och ta kontakt med elevhälsan.' }}
 ];
-THEMES.forEach(t => t.words = t.words.map(a => ({w:a[0], e:a[1], s:a[2], b:a[3]})));
+const mapWord = a => ({w:a[0], e:a[1], s:a[2], b:a[3]});
+THEMES.forEach(t => {
+  t.words = t.words.map(mapWord);
+  if(t.stageWords) Object.keys(t.stageWords).forEach(g => t.stageWords[g] = t.stageWords[g].map(mapWord));
+});
 
-const EXS = {cards:'Ordkort', listen:'Lyssna och välj', read:'Läs och välj', sent:'Bygg meningen', lego:'Hitta klossen'};
+const EXS = {cards:'Ordkort', listen:'Lyssna och välj', read:'Läs och välj', sent:'Bygg meningen', facts:'Bra att veta', lego:'Hitta klossen'};
+const EX_ORDER = {
+  '13':['cards','listen','facts','read','sent'],
+  '46':['cards','listen','read','facts','sent'],
+  '79':['cards','facts','read','sent','listen']
+};
 
 const HELP_PHRASES = [
   'Jag förstår inte.',
@@ -372,6 +501,11 @@ const sample = (a,n) => shuffle(a).slice(0,n);
 const esc = s => String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');
 const theme = id => THEMES.find(t => t.id===id);
 
+/* Innehåll efter stadium: gemensamt för alla + det som hör till elevens stadium */
+const wordsFor = t => t.words.concat((t.stageWords||{})[st.grade]||[]);
+const sentencesFor = t => t.sentences.concat((t.stageSentences||{})[st.grade]||[]);
+const factsFor = t => { const f=t.facts||{}; return (f.all||[]).concat(f[st.grade]||[]); };
+
 function brickSVG(c, size){
   const s=SIZES[size], W=s.studs*20, H=30; let studs='';
   for(let i=0;i<s.studs;i++) studs+=`<rect x="${i*20+4}" y="-6" width="12" height="8" rx="2" fill="${c.hex}" stroke="${c.dark}" stroke-width="1.5"/>`;
@@ -379,7 +513,7 @@ function brickSVG(c, size){
 }
 const pic = w => w.b!=null ? `<span class="bk">${brickSVG(COLORS[w.b],'m')}</span>` : `<span class="emo" aria-hidden="true">${w.e}</span>`;
 
-/* progress */
+/* progress (samma sparnycklar som tidigare, så att inget försvinner) */
 let stars = {};
 try { stars = JSON.parse(localStorage.getItem('startguiden-stars')||'{}') || {}; } catch(e){ stars = {}; }
 function addStar(id){ stars[id]=(stars[id]||0)+1; try{ localStorage.setItem('startguiden-stars', JSON.stringify(stars)); }catch(e){} }
@@ -404,18 +538,27 @@ function speak(text){
 document.addEventListener('click', e => { const b=e.target.closest('[data-say]'); if(b) speak(b.dataset.say); });
 
 /* ================= STATE / ROUTING ================= */
-const st = {mode:'s', theme:null, ex:'cards', grade:'13'};
+let savedGrade=null;
+try { savedGrade = localStorage.getItem('startguiden-stadium'); } catch(e){}
+const st = {mode:'s', theme:null, ex:'cards', grade: GRADE_NAMES[savedGrade] ? savedGrade : '13', chosen: !!GRADE_NAMES[savedGrade], picking:false};
+function setGrade(g){
+  st.grade=g; st.chosen=true;
+  try{ localStorage.setItem('startguiden-stadium', g); }catch(e){}
+}
 let timer=null;
 function go(patch){ Object.assign(st,patch); clearTimeout(timer); render(); window.scrollTo({top:0}); }
 $('modeS').onclick=()=>go({mode:'s'});
-$('modeT').onclick=()=>go({mode:'t'});
+$('modeT').onclick=()=>go({mode:'t', picking:false});
 $('home').onclick=()=>go({theme:null});
 
 function render(){
   $('modeS').setAttribute('aria-pressed', st.mode==='s');
   $('modeT').setAttribute('aria-pressed', st.mode==='t');
   $('app').className = st.mode==='t' ? 'teacher' : 'student';
-  if(st.mode==='s') st.theme ? renderTheme() : renderStudentHome();
+  if(st.mode==='s'){
+    if(!st.chosen || st.picking) renderStagePicker();
+    else st.theme ? renderTheme() : renderStudentHome();
+  }
   else st.theme ? renderPlan() : renderTeacherHome();
 }
 
@@ -457,21 +600,37 @@ function bindStart(){
 }
 
 /* ================= STUDENT ================= */
-function renderStudentHome(){
+function renderStagePicker(){
+  const q='Välkommen! Vilken årskurs går du i?';
   $('app').innerHTML = `<section class="startbox">
+      <h2>Välkommen!</h2>
+      <div class="row" style="margin-top:4px"><p class="lead" style="margin:0">Vilken årskurs går du i?</p><button class="btn ghost" data-say="${esc(q)}" aria-label="Lyssna">🔊</button></div>
+      <div class="stages">${STAGES.map(s=>`<button class="stage" data-g="${s.g}"><span class="ic" aria-hidden="true">${s.ic}</span><span class="nm">${s.nm}</span><small>${s.sub}</small></button>`).join('')}</div>
+      <p class="hint">Vet du inte? Fråga din lärare. Du kan byta senare.</p>
+    </section>`;
+  document.querySelectorAll('.stage').forEach(b=>b.onclick=()=>{
+    const s=STAGES.find(x=>x.g===b.dataset.g);
+    speak(s.say); setGrade(s.g); go({picking:false});
+  });
+}
+function renderStudentHome(){
+  $('app').innerHTML = `<div class="stagebar">Jag går i <b>${GRADE_NAMES[st.grade]}</b><button class="linkbtn" id="chg">Byt årskurs</button></div>
+    <section class="startbox">
       <h2>Börja här</h2>
-      <p class="lead">StartGuiden hjälper dig att förstå, prata och använda svenska i skolan.</p>
+      <p class="lead">Välkomstguiden hjälper dig att prata svenska och att förstå skolan och Sverige.</p>
       ${startPath()}
     </section>
     <div id="helpSection">${helpBox()}</div>
     <div class="sectionlabel">Mina teman</div>
-    ${themeGrid(t => `${t.words.length} ord${stars[t.id]?` &nbsp;⭐ ${stars[t.id]}`:''}`)}
+    ${themeGrid(t => `${wordsFor(t).length} ord${stars[t.id]?` &nbsp;⭐ ${stars[t.id]}`:''}`)}
     ${canBox()}`;
+  $('chg').onclick=()=>go({picking:true});
   bindGrid(); bindStart(); bindCan();
 }
 function renderTheme(){
   const t=theme(st.theme);
-  const exs=['cards','listen','read','sent'].concat(t.lego?['lego']:[]);
+  const exs=EX_ORDER[st.grade].concat(t.lego?['lego']:[]);
+  if(!exs.includes(st.ex)) st.ex='cards';
   $('app').innerHTML = `<button class="back" id="bk">‹ Alla teman</button>
     <div class="head"><span class="ic" aria-hidden="true">${t.icon}</span><h2 style="margin:0">${t.name}</h2><span style="margin-left:auto;font-weight:700" id="stars">⭐ ${stars[t.id]||0}</span></div>
     <nav class="tabs" role="group" aria-label="Övningar">${exs.map(k=>`<button data-ex="${k}" aria-pressed="${st.ex===k}">${EXS[k]}</button>`).join('')}</nav>
@@ -479,30 +638,40 @@ function renderTheme(){
     <section class="panel" id="panel"></section>`;
   $('bk').onclick=()=>go({theme:null});
   document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>go({ex:b.dataset.ex}));
-  ({cards:exCards, listen:()=>exQuiz('listen'), read:()=>exQuiz('read'), sent:exSentence, lego:exLego})[st.ex](t);
+  ({cards:exCards, listen:()=>exQuiz('listen'), read:()=>exQuiz('read'), sent:exSentence, facts:exFacts, lego:exLego})[st.ex](t);
 }
 function star(t){ addStar(t.id); const s=$('stars'); if(s) s.textContent='⭐ '+stars[t.id]; }
 
 /* Ordkort */
 function exCards(t){
-  $('panel').innerHTML = `<div class="cards">${t.words.map((w,i)=>`<button class="wcard" data-i="${i}">${pic(w)}<span class="word">${esc(w.w)}</span><span class="ex"></span></button>`).join('')}</div>
+  const ws=wordsFor(t);
+  $('panel').innerHTML = `<div class="cards">${ws.map((w,i)=>`<button class="wcard" data-i="${i}">${pic(w)}<span class="word">${esc(w.w)}</span><span class="ex"></span></button>`).join('')}</div>
     <p class="hint">Tryck på ett kort. Lyssna. Säg ordet och meningen själv.</p>`;
   $('panel').querySelectorAll('.wcard').forEach(b=>b.onclick=()=>{
-    const w=t.words[+b.dataset.i];
+    const w=ws[+b.dataset.i];
     $('panel').querySelectorAll('.wcard').forEach(x=>{x.classList.remove('on'); x.querySelector('.ex').textContent='';});
     b.classList.add('on'); b.querySelector('.ex').textContent=w.s;
     speak(`${w.w}. ${w.s}`);
   });
 }
 
+/* Bra att veta */
+function exFacts(t){
+  const list=factsFor(t);
+  $('panel').innerHTML = `<p class="lead" style="margin-bottom:12px">Läs och lyssna. Det här är bra att veta i skolan och i Sverige.</p>
+    <div class="row" style="margin:0 0 14px"><button class="btn" id="fa">🔊 Lyssna på allt</button></div>
+    <div class="facts">${list.map(f=>`<div class="fact"><span>${esc(f)}</span><button class="btn ghost" data-say="${esc(f)}" aria-label="Lyssna: ${esc(f)}">🔊</button></div>`).join('')}</div>`;
+  $('fa').onclick=()=>speak(list.join(' '));
+}
+
 /* Lyssna och välj / Läs och välj */
 function exQuiz(kind){
-  const t=theme(st.theme), total=8;
-  const q={round:0, score:0, order:shuffle(t.words).concat(shuffle(t.words)).slice(0,total)};
+  const t=theme(st.theme), total=8, ws=wordsFor(t);
+  const q={round:0, score:0, order:shuffle(ws).concat(shuffle(ws)).slice(0,total)};
   function next(){
     if(q.round>=total) return finish();
     q.target=q.order[q.round]; q.firstTry=true; q.locked=false;
-    q.opts=shuffle([q.target].concat(sample(t.words.filter(w=>w!==q.target),3)));
+    q.opts=shuffle([q.target].concat(sample(ws.filter(w=>w!==q.target),3)));
     const top = kind==='listen'
       ? `<button class="btn" id="qh">🔊 Lyssna</button><span class="say" style="font-size:18px;font-weight:500;color:var(--muted)">Vilken bild är det?</span>`
       : `<button class="btn ghost" data-say="${esc(q.target.w)}" aria-label="Lyssna på ordet">🔊</button><span class="say">${esc(q.target.w)}</span>`;
@@ -536,7 +705,7 @@ function exQuiz(kind){
 
 /* Bygg meningen */
 function exSentence(t){
-  let list=shuffle(t.sentences), k=0, text, tokens, pool, ans;
+  let list=shuffle(sentencesFor(t)), k=0, text, tokens, pool, ans;
   function load(){
     text=list[k%list.length]; tokens=text.split(' '); ans=[];
     const idx=tokens.map((_,i)=>i); do{pool=shuffle(idx);}while(tokens.length>1 && pool.join()===idx.join());
@@ -621,21 +790,21 @@ function exLego(t){
 function gradeBar(){
   return `<div class="grades" role="group" aria-label="Årskurs"><span>Årskurs:</span>${Object.keys(GRADE_NAMES).map(g=>`<button data-g="${g}" aria-pressed="${st.grade===g}">${GRADE_NAMES[g]}</button>`).join('')}</div>`;
 }
-function bindGrades(){ document.querySelectorAll('.grades button').forEach(b=>b.onclick=()=>go({grade:b.dataset.g})); }
+function bindGrades(){ document.querySelectorAll('.grades button').forEach(b=>b.onclick=()=>{ setGrade(b.dataset.g); go({}); }); }
 
 function renderTeacherHome(){
   $('app').innerHTML=`<div class="card intro">
-      <h2>Så använder du StartGuiden</h2>
-      <p class="lead">StartGuiden ger dig färdiga lektioner och övningar för nyanlända elever i åk 1–9. Varje tema innehåller ord med ljud, övningar för eleverna och ett lektionsupplägg anpassat efter årskurs.</p>
+      <h2>Så använder du Välkomstguiden</h2>
+      <p class="lead">Välkomstguiden ger dig färdiga lektioner och övningar för nyanlända elever i åk 1–9. Varje tema innehåller ord med ljud, fakta om skolan och Sverige, övningar för eleverna och ett lektionsupplägg anpassat efter årskurs.</p>
       <div class="cols">
-        <div><b>Planera</b>Välj årskurs och tema nedan. Du får mål, lektionssteg, anpassningar och modersmålsstöd.</div>
-        <div><b>Visa</b>Byt till För elever och visa övningarna på storskärm. Eleverna turas om att trycka och säga svaren högt.</div>
-        <div><b>Öva</b>Eleverna övar själva eller i par på läsplatta. Långsamt tal är påslaget från början.</div>
+        <div><b>Planera</b>Välj årskurs och tema nedan. Du får mål, lektionssteg, anpassningar, Bra att veta och modersmålsstöd.</div>
+        <div><b>Visa</b>Byt till För elever och visa övningarna på storskärm. Årskursen du väljer här följer med till elevläget.</div>
+        <div><b>Öva</b>Eleverna övar själva eller i par på läsplatta. Första gången väljer eleven sin årskurs. Långsamt tal är påslaget från början.</div>
       </div>
     </div>
     ${gradeBar()}
     <h2>Teman</h2><p class="lead">Ordningen följer vad en nyanländ elev behöver först, men du kan välja fritt.</p>
-    ${themeGrid(t=>`${t.words.length} ord, ${t.sentences.length} fraser`)}`;
+    ${themeGrid(t=>`${wordsFor(t).length} ord, ${sentencesFor(t).length} fraser`)}`;
   bindGrades(); bindGrid();
 }
 
@@ -646,7 +815,7 @@ const MISSIONS = {
 };
 
 function renderPlan(){
-  const t=theme(st.theme), p=t.plan;
+  const t=theme(st.theme), p=t.plan, facts=factsFor(t);
   const mission = t.lego ? `<div class="card"><h3>Legouppdrag</h3><div class="mission" id="mi"></div><div class="row" style="margin-top:0"><button class="btn" id="mh">🔊 Läs upp</button><button class="btn ghost" id="mn">Nytt uppdrag</button></div></div>
     <div class="card"><h3>Bra att veta om grammatiken</h3><div class="tablewrap"><table class="gram">
       <tr><td><b>röd</b></td><td>den röda klossen, röda klossar</td></tr>
@@ -664,18 +833,20 @@ function renderPlan(){
           <p style="color:var(--muted);font-size:15px">Kopplar till kursplanen i svenska som andraspråk (Lgr22): muntlig kommunikation, ordförråd och att lyssna och förstå i vardagliga situationer.</p></div>
         <div class="card"><h3>Lektionsupplägg, cirka 40 minuter</h3><ol class="steps">${p.steps.map(s=>`<li><b>${s[0]} <span class="min">${s[1]}</span></b>${s[2]}</li>`).join('')}</ol></div>
         <div class="card"><h3>Anpassa för ${GRADE_NAMES[st.grade].toLowerCase()}</h3><p class="focus">${p.grades[st.grade]}</p></div>
+        <div class="card"><h3>Bra att veta för ${GRADE_NAMES[st.grade].toLowerCase()}</h3><p style="margin-top:0;font-size:15px;color:var(--muted)">Samma fakta som eleverna ser under Bra att veta. Tryck för att höra.</p>
+          <div class="sents">${facts.map(f=>`<button class="wbtn" data-say="${esc(f)}">🔊 ${esc(f)}</button>`).join('')}</div></div>
         <div class="card"><h3>Fler aktiviteter</h3><ul class="plain">${p.ideas.map(i=>`<li>${i}</li>`).join('')}</ul></div>
         <div class="card"><h3>Modersmålsstöd och hänsyn</h3><p>${p.mother}</p></div>
       </div>
       <div class="col">
         ${mission}
         <div class="card"><h3>Ordlista</h3><p style="margin-top:0;font-size:15px;color:var(--muted)">Tryck för att höra ordet.</p>
-          <div class="words">${t.words.map(w=>`<button class="wbtn" data-say="${esc(w.w)}">${w.e} ${esc(w.w)}</button>`).join('')}</div></div>
-        <div class="card"><h3>Fraser att öva</h3><div class="sents">${t.sentences.map(s=>`<button class="wbtn" data-say="${esc(s)}">🔊 ${esc(s)}</button>`).join('')}</div></div>
+          <div class="words">${wordsFor(t).map(w=>`<button class="wbtn" data-say="${esc(w.w)}">${w.e} ${esc(w.w)}</button>`).join('')}</div></div>
+        <div class="card"><h3>Fraser att öva</h3><div class="sents">${sentencesFor(t).map(s=>`<button class="wbtn" data-say="${esc(s)}">🔊 ${esc(s)}</button>`).join('')}</div></div>
       </div>
     </div>`;
   $('bk').onclick=()=>go({theme:null});
-  $('toS').onclick=()=>go({mode:'s', ex:'cards'});
+  $('toS').onclick=()=>{ setGrade(st.grade); go({mode:'s', ex:'cards', picking:false}); };
   bindGrades();
   if(t.lego){
     let txt=''; const nm=()=>{txt=pick(MISSIONS[st.grade])(); $('mi').textContent=txt;};

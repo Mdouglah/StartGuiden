@@ -519,11 +519,32 @@ try { stars = JSON.parse(localStorage.getItem('startguiden-stars')||'{}') || {};
 function addStar(id){ stars[id]=(stars[id]||0)+1; try{ localStorage.setItem('startguiden-stars', JSON.stringify(stars)); }catch(e){} }
 
 /* speech */
+/* Väljer den bästa svenska rösten som finns på enheten, inte bara den första i listan:
+   sv-SE först, sedan röster av hög kvalitet (Natural, Online, Neural, Enhanced, Premium),
+   gärna en kvinnoröst. Vid lika poäng behålls enhetens egen ordning. */
+const VOICE_QUALITY=/natural|online|neural|enhanced|förbättrad|premium|wavenet/i;
+const VOICE_FEMALE=/sofie|hillevi|klara|alva|hedvig|astrid|ingrid|google svenska|\bfemale\b/i;
+const VOICE_MALE=/bengt|mattias|oskar|\bmale\b/i;
+function bestVoice(vs){
+  let best=null, bestScore=-1;
+  for(const v of vs){
+    const lang=(v.lang||'').toLowerCase().replace('_','-');
+    if(!lang.startsWith('sv')) continue;
+    let s=0;
+    if(lang==='sv-se') s+=4;
+    if(VOICE_QUALITY.test(v.name)) s+=8;
+    if(VOICE_FEMALE.test(v.name)) s+=3;
+    if(VOICE_MALE.test(v.name)) s-=2;
+    if(!v.localService) s+=1;
+    if(s>bestScore){ best=v; bestScore=s; }
+  }
+  return best;
+}
 let svVoice=null;
 function loadVoices(){
   if(!('speechSynthesis' in window)) return;
   const vs=speechSynthesis.getVoices(); if(!vs.length) return;
-  svVoice = vs.find(v=>/^sv/i.test(v.lang))||null;
+  svVoice = bestVoice(vs);
   const n=$('voiceNotice');
   if(!svVoice){ n.hidden=false; n.textContent='Den här enheten har ingen svensk röst installerad, så uttalet kan bli fel. Lägg till svenska under enhetens inställningar för text till tal.'; } else n.hidden=true;
 }
@@ -533,7 +554,7 @@ function speak(text){
   if(!('speechSynthesis' in window)) return;
   speechSynthesis.cancel();
   const u=new SpeechSynthesisUtterance(text); u.lang='sv-SE'; if(svVoice) u.voice=svVoice;
-  u.rate=$('slow').checked?0.72:0.95; speechSynthesis.speak(u);
+  u.rate=$('slow').checked?0.85:0.95; speechSynthesis.speak(u);
 }
 document.addEventListener('click', e => { const b=e.target.closest('[data-say]'); if(b) speak(b.dataset.say); });
 

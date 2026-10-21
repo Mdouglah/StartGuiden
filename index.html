@@ -3,7 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Välkomstguiden – svenska, skolan och Sverige för förberedelseklass</title>
+<title>Välkomstguiden – svenska, skolan och Sverige för förberedelseklass | Norvay</title>
+<meta name="description" content="Välkomstguiden från Norvay: svenska, skolan och vardagen i Sverige för förberedelseklass i åk 1–9, med ord och ljud, övningar och färdiga lektionsupplägg.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%23f5f3ec' stroke='%23123f37' stroke-width='1.5'/%3E%3Ctext x='16' y='21' font-family='Georgia,serif' font-size='15' text-anchor='middle' fill='%23123f37'%3EN%3C/text%3E%3C/svg%3E">
+<script>
+  /* Nattläge: Välkomstguiden följer enhetens inställning tills man själv väljer med månknappen.
+     Ett eget val sparas i kakan "norvay-tema" (bara light eller dark) för hela norvayapp.se. */
+  (function(){var t,m=document.cookie.match(/(?:^|; )norvay-tema=(light|dark)/);if(m)t=m[1];if(!t){try{t=localStorage.getItem('norvay-tema')}catch(e){}}if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t)})();
+</script>
 <style>
 /* Lokala typsnitt (inga externa anrop). Lexend: SIL Open Font License 1.1, från @fontsource/lexend 5.3.0 */
 @font-face{font-family:'Lexend';font-style:normal;font-weight:400;font-display:swap;src:url('/fonts/lexend-latin-400-normal.woff2') format('woff2')}
@@ -15,7 +22,7 @@
 @font-face{font-family:'Newsreader';font-style:normal;font-weight:400;font-display:swap;src:url('/fonts/newsreader-latin-400-normal.woff2') format('woff2')}
 @font-face{font-family:'Newsreader';font-style:italic;font-weight:400;font-display:swap;src:url('/fonts/newsreader-latin-400-italic.woff2') format('woff2')}
 :root{
-  /* Ljust läge: Norvay-temat (skola). Det mörka läget nedan är oförändrat. */
+  /* Ljust läge: Norvay-temat (skola). Mörkt läge nedan: samma grundfärger som Norvays mörka läge. */
   --bg:#f5f3ec; --bg-grad:none; --surface:#FFFFFF; --ink:#123f37; --muted:#4f6b63; --line:rgba(18,63,55,.14);
   --accent:#2f6b5a; --accent-ink:#FFFFFF; --btn:#2f6b5a; --ok:#1C7F45; --warn:#B8322A;
   --plate:#d7e2d7; --plate-dot:#c3d3c4; --chip:#FFFFFF; --chip-line:#b9cbb9; --soft:#e6ede5;
@@ -28,15 +35,15 @@
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
-    --bg:#0F1A12; --bg-grad:#0F1A12; --surface:#17251A; --ink:#E3EFE5; --muted:#9DBCA5; --line:#2A3D2E;
-    --accent:#81C784; --accent-ink:#0F1A12; --btn:#81C784; --ok:#66CC8A; --warn:#FF8173;
-    --plate:#1E3426; --plate-dot:#28452F; --chip:#1E2F22; --chip-line:#36513C; --soft:#1E2F22; --band:#1E2F22; --rubrik-em:#dd9479; --form-ljus:#0F1A12; --form-prick:#dd9479; --logo:#2e7d32; --logo-kant:#1b5e20; --kort-skugga:0 4px 20px rgba(27,94,32,.06);
+    --bg:#0f2a24; --bg-grad:none; --surface:#163731; --ink:#ece7da; --muted:#a9bdb5; --line:rgba(236,231,218,.14);
+    --accent:#8fc2a8; --accent-ink:#0f2a24; --btn:#8fc2a8; --ok:#7fcf9c; --warn:#f0a99a;
+    --plate:#1f4239; --plate-dot:#2a5045; --chip:#1c3d35; --chip-line:#33584e; --soft:#1c3d35; --band:#1f4239; --rubrik-em:#e3a58f; --form-ljus:#0f2a24; --form-prick:#dd9479; --logo:#2f6b5a; --logo-kant:#24564a; --kort-skugga:none;
   }
 }
 :root[data-theme="dark"]{
-  --bg:#0F1A12; --bg-grad:#0F1A12; --surface:#17251A; --ink:#E3EFE5; --muted:#9DBCA5; --line:#2A3D2E;
-  --accent:#81C784; --accent-ink:#0F1A12; --btn:#81C784; --ok:#66CC8A; --warn:#FF8173;
-  --plate:#1E3426; --plate-dot:#28452F; --chip:#1E2F22; --chip-line:#36513C; --soft:#1E2F22; --band:#1E2F22; --rubrik-em:#dd9479; --form-ljus:#0F1A12; --form-prick:#dd9479; --logo:#2e7d32; --logo-kant:#1b5e20; --kort-skugga:0 4px 20px rgba(27,94,32,.06);
+  --bg:#0f2a24; --bg-grad:none; --surface:#163731; --ink:#ece7da; --muted:#a9bdb5; --line:rgba(236,231,218,.14);
+  --accent:#8fc2a8; --accent-ink:#0f2a24; --btn:#8fc2a8; --ok:#7fcf9c; --warn:#f0a99a;
+  --plate:#1f4239; --plate-dot:#2a5045; --chip:#1c3d35; --chip-line:#33584e; --soft:#1c3d35; --band:#1f4239; --rubrik-em:#e3a58f; --form-ljus:#0f2a24; --form-prick:#dd9479; --logo:#2f6b5a; --logo-kant:#24564a; --kort-skugga:none;
 }
 *,*::before,*::after{box-sizing:inherit}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
@@ -223,22 +230,48 @@ footer{margin-top:28px;color:var(--muted);font-size:14px}
 .norvay-bar-brand { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; font-size: 12px; letter-spacing: 0.2em; }
 .norvay-bar-mark { width: 24px; height: 24px; border: 1.5px solid #123f37; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-family: Georgia, serif; font-size: 13px; letter-spacing: 0; }
 @media print { .norvay-bar { display: none !important; } }
+/* Månknappen (samma som på Norvays startsida) och större tryckytor i listen */
+.norvay-bar{padding-top:0;padding-bottom:0}
+.norvay-bar a{display:inline-flex;align-items:center;min-height:44px}
+.norvay-bar-right{display:inline-flex;align-items:center;gap:12px}
+.n-theme{width:40px;height:40px;flex:0 0 40px;border-radius:50%;border:1px solid rgba(18,63,55,.14);background:transparent;color:#123f37;display:inline-grid;place-items:center;cursor:pointer;padding:0;transition:border-color .3s ease,color .3s ease}
+.n-theme:hover{border-color:#c9785f;color:#c9785f}
+.n-theme:focus-visible{outline:3px solid #2f6b5a;outline-offset:3px}
+.n-theme svg{width:18px;height:18px}
+:root[data-theme="dark"] .norvay-bar{background:#0f2a24;border-bottom-color:rgba(236,231,218,.14)}
+:root[data-theme="dark"] .norvay-bar a{color:#ece7da}
+:root[data-theme="dark"] .norvay-bar-mark{border-color:#ece7da}
+:root[data-theme="dark"] .n-theme{color:#ece7da;border-color:rgba(236,231,218,.14)}
+:root[data-theme="dark"] .n-theme:hover{border-color:#e3a58f;color:#e3a58f}
+:root[data-theme="dark"] .n-theme:focus-visible,:root[data-theme="dark"] .norvay-bar a:focus-visible{outline-color:#8fc2a8}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]) .norvay-bar{background:#0f2a24;border-bottom-color:rgba(236,231,218,.14)}
+  :root:not([data-theme="light"]) .norvay-bar a{color:#ece7da}
+  :root:not([data-theme="light"]) .norvay-bar-mark{border-color:#ece7da}
+  :root:not([data-theme="light"]) .n-theme{color:#ece7da;border-color:rgba(236,231,218,.14)}
+  :root:not([data-theme="light"]) .n-theme:hover{border-color:#e3a58f;color:#e3a58f}
+  :root:not([data-theme="light"]) .n-theme:focus-visible,:root:not([data-theme="light"]) .norvay-bar a:focus-visible{outline-color:#8fc2a8}
+}
+/* Gemensam sidfotsrad */
+footer p{margin:0 0 .6em}
+footer a{color:var(--accent);text-underline-offset:3px}
+@media print{.n-theme{display:none!important}}
 </style>
- <!-- Välkomstguiden (tidigare StartGuiden). Samma Umami-ID och tagg så att statistiken fortsätter. -->
-<script defer src="https://cloud.umami.is/script.js" data-website-id="2e81b730-fb1d-4183-9323-de51c8949318" data-tag="startguiden" data-do-not-track="true"></script> 
+ <!-- Välkomstguiden -->
+<script defer src="https://cloud.umami.is/script.js" data-website-id="2e81b730-fb1d-4183-9323-de51c8949318" data-tag="valkomstguiden" data-do-not-track="true"></script> 
 </head>
 <body>
 
 <div class="norvay-bar">
   <a class="norvay-bar-back" href="https://norvayapp.se/#verktyg">← Alla verktyg</a>
-  <a class="norvay-bar-brand" href="https://norvayapp.se/" aria-label="Norvay startsida"><span class="norvay-bar-mark">N</span><span>NORVAY</span></a>
+  <span class="norvay-bar-right"><a class="norvay-bar-brand" href="https://norvayapp.se/" aria-label="Norvay startsida"><span class="norvay-bar-mark">N</span><span>NORVAY</span></a><button class="n-theme" id="themeBtn" type="button"></button></span>
 </div>
 <div class="wrap">
   <header class="top">
     <div class="top-text">
     <button class="brand" id="home" aria-label="Till startsidan">
       <svg width="54" height="44" viewBox="-1 -8 62 47" aria-hidden="true"><rect x="4" y="-6" width="12" height="8" rx="2" style="fill:var(--logo);stroke:var(--logo-kant)" stroke-width="1.5"/><rect x="24" y="-6" width="12" height="8" rx="2" style="fill:var(--logo);stroke:var(--logo-kant)" stroke-width="1.5"/><rect x="44" y="-6" width="12" height="8" rx="2" style="fill:var(--logo);stroke:var(--logo-kant)" stroke-width="1.5"/><rect x="0" y="0" width="60" height="30" rx="3" style="fill:var(--logo);stroke:var(--logo-kant)" stroke-width="1.5"/></svg>
-      <span><h1>Välkomst<em>Guiden</em></h1><p>Svenska, skolan och vardagen i Sverige för förberedelseklass</p></span>
+      <span><h1>Välkomst<em>guiden</em></h1><p>Svenska, skolan och vardagen i Sverige för förberedelseklass</p></span>
     </button>
     <div class="seg" role="group" aria-label="Välj läge">
       <button id="modeS" aria-pressed="true">För elever</button>
@@ -250,7 +283,7 @@ footer{margin-top:28px;color:var(--muted);font-size:14px}
   <div class="tools"><label><input type="checkbox" id="slow" checked> Långsamt tal</label></div>
   <div id="voiceNotice" class="notice" hidden></div>
   <main id="app"></main>
-  <footer>Ljudet använder enhetens inbyggda svenska röst. Elevernas stjärnor, årskurs och "Jag kan" sparas bara på den här enheten.</footer>
+  <footer><p>Ljudet använder enhetens inbyggda svenska röst. Elevernas stjärnor, årskurs och "Jag kan" sparas bara på den här enheten.</p><p>Ett verktyg från <a href="https://norvayapp.se">Norvay</a> · <a href="https://norvayapp.se/integritet">Integritet</a> · <a href="mailto:kontakt@norvayapp.se">kontakt@norvayapp.se</a></p></footer>
 </div>
 
 <script>
@@ -876,6 +909,39 @@ function renderPlan(){
 }
 
 render();
+</script>
+<script>
+/* ---------- Nattläge: månknappen (samma utseende som på Norvay) ---------- */
+(function(){
+  var MOON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>';
+  var SUN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>';
+  var btn = document.getElementById('themeBtn');
+  var enhet = window.matchMedia('(prefers-color-scheme: dark)');
+  /* Sparar valet i kakan "norvay-tema" för alla Norvays verktyg (ett år). Bara ordet light eller dark. */
+  function sparaTema(t){
+    var doman = /(^|\.)norvayapp\.se$/.test(location.hostname) ? '; domain=.norvayapp.se' : '';
+    var saker = location.protocol === 'https:' ? '; secure' : '';
+    document.cookie = 'norvay-tema=' + t + '; path=/; max-age=31536000; samesite=lax' + saker + doman;
+  }
+  function arMorkt(){
+    var t = document.documentElement.getAttribute('data-theme');
+    return t ? t === 'dark' : enhet.matches;
+  }
+  function mala(){
+    var dark = arMorkt();
+    btn.innerHTML = dark ? SUN : MOON;
+    btn.setAttribute('aria-label', dark ? 'Byt till ljust läge' : 'Byt till mörkt läge');
+    btn.setAttribute('aria-pressed', String(dark));
+  }
+  btn.addEventListener('click', function(){
+    var next = arMorkt() ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    sparaTema(next);
+    mala();
+  });
+  if (enhet.addEventListener) enhet.addEventListener('change', mala);
+  mala();
+})();
 </script>
 </body>
 </html>

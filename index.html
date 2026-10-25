@@ -255,6 +255,9 @@ footer{margin-top:28px;color:var(--muted);font-size:14px}
 /* Gemensam sidfotsrad */
 footer p{margin:0 0 .6em}
 footer a{color:var(--accent);text-underline-offset:3px}
+/* Länken "Stöd Norvay" i sidfoten: visas bara i lärarläget, synlig fokusram, aldrig på papper */
+.norvay-stod:focus-visible{outline:3px solid currentColor;outline-offset:3px;border-radius:4px}
+@media print{#stod,.norvay-stod{display:none!important}}
 @media print{.n-theme{display:none!important}}
 </style>
  <!-- Välkomstguiden -->
@@ -283,7 +286,7 @@ footer a{color:var(--accent);text-underline-offset:3px}
   <div class="tools"><label><input type="checkbox" id="slow" checked> Långsamt tal</label></div>
   <div id="voiceNotice" class="notice" hidden></div>
   <main id="app"></main>
-  <footer><p>Ljudet använder enhetens inbyggda svenska röst. Elevernas stjärnor, årskurs och "Jag kan" sparas bara på den här enheten.</p><p>Ett verktyg från <a href="https://norvayapp.se">Norvay</a> · <a href="https://norvayapp.se/integritet">Integritet</a> · <a href="mailto:kontakt@norvayapp.se">kontakt@norvayapp.se</a></p></footer>
+  <footer><p>Ljudet använder enhetens inbyggda svenska röst. Elevernas stjärnor, årskurs och "Jag kan" sparas bara på den här enheten.</p><p>Ett verktyg från <a href="https://norvayapp.se">Norvay</a> · <a href="https://norvayapp.se/integritet">Integritet</a> · <a href="mailto:kontakt@norvayapp.se">kontakt@norvayapp.se</a><span id="stod" hidden> · <a class="norvay-stod" href="https://norvayapp.se/#stod" target="_blank" rel="noopener" aria-label="Stöd Norvay (öppnas i ny flik)">Stöd Norvay</a></span></p></footer>
 </div>
 
 <script>
@@ -609,6 +612,7 @@ function render(){
   $('modeS').setAttribute('aria-pressed', st.mode==='s');
   $('modeT').setAttribute('aria-pressed', st.mode==='t');
   $('app').className = st.mode==='t' ? 'teacher' : 'student';
+  $('stod').hidden = st.mode!=='t'; // "Stöd Norvay" bara för lärare, aldrig i elevläget
   if(st.mode==='s'){
     if(!st.chosen || st.picking) renderStagePicker();
     else st.theme ? renderTheme() : renderStudentHome();
